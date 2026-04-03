@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Rich Flora</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #E91E63;
+            --light-pink: #F8BBD0;
+            --pale-pink: #FFF5F8;
+            --white: #FFFFFF;
+            --dark-text: #2D2D2D;
+            --gray-text: #666666;
+            --heading-font: 'Playfair Display', serif;
+            --body-font: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--body-font);
+            color: var(--dark-text);
+            line-height: 1.6;
+            background: #F9F9F9;
+        }
+
+        /* Header Styles */
+        .top-bar {
+            background: var(--primary-pink);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            fill: var(--primary-pink);
+        }
+
+        .logo-text h1 {
+            font-family: var(--heading-font);
+            color: var(--primary-pink);
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 11px;
+            color: var(--gray-text);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-pink);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-icons a {
+            color: var(--dark-text);
+            font-size: 20px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-icons a:hover {
+            color: var(--primary-pink);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--primary-pink);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--pale-pink) 0%, var(--light-pink) 100%);
+            padding: 60px 5% 40px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: var(--heading-font);
+            font-size: 48px;
+            color: var(--dark-text);
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: var(--gray-text);
+            font-size: 16px;
+        }
+
+        /* Cart Container */
+        .cart-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 5%;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+        }
+
+        /* Cart Items */
+        .cart-items {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .cart-items h2 {
+            font-family: var(--heading-font);
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: var(--dark-text);
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 120px 1fr auto;
+            gap: 25px;
+            padding: 25px 0;
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--pale-pink);
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .item-name {
+            font-family: var(--heading-font);
+            font-size: 20px;
+            color: var(--dark-text);
+            margin-bottom: 8px;
+        }
+
+        .item-description {
+            color: var(--gray-text);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .item-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            padding: 5px 10px;
+        }
+
+        .quantity-btn {
+            background: none;
+            border: none;
+            color: var(--primary-pink);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 5px 10px;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: var(--pale-pink);
+            border-radius: 4px;
+        }
+
+        .quantity {
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: var(--gray-text);
+            cursor: pointer;
+            padding: 8px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .remove-btn:hover {
+            color: #E53935;
+        }
+
+        .item-price-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .item-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-pink);
+        }
+
+        .item-original-price {
+            text-decoration: line-through;
+            color: var(--gray-text);
+            font-size: 16px;
+        }
+
+        /* Empty Cart */
+        .empty-cart {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .empty-cart i {
+            font-size: 100px;
+            color: var(--light-pink);
+            margin-bottom: 25px;
+        }
+
+        .empty-cart h3 {
+            font-family: var(--heading-font);
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--dark-text);
+        }
+
+        .empty-cart p {
+            color: var(--gray-text);
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--primary-pink);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(233, 30, 99, 0.3);
+        }
+
+        .shop-btn:hover {
+            background: #C2185B;
+            transform: translateY(-2px);
+        }
+
+        /* Order Summary */
+        .order-summary {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+
+        .order-summary h2 {
+            font-family: var(--heading-font);
+            font-size: 26px;
+            margin-bottom: 25px;
+            color: var(--dark-text);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .summary-row:last-of-type {
+            border-bottom: 2px solid var(--primary-pink);
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--primary-pink);
+            margin-top: 10px;
+            padding-top: 20px;
+        }
+
+        .promo-code {
+            margin: 25px 0;
+        }
+
+        .promo-input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .promo-input-group input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .promo-input-group input:focus {
+            border-color: var(--primary-pink);
+        }
+
+        .apply-btn {
+            padding: 12px 25px;
+            background: var(--pale-pink);
+            color: var(--primary-pink);
+            border: 2px solid var(--primary-pink);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .apply-btn:hover {
+            background: var(--primary-pink);
+            color: white;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+            box-shadow: 0 5px 20px rgba(233, 30, 99, 0.3);
+        }
+
+        .checkout-btn:hover {
+            background: #C2185B;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
+        }
+
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: var(--gray-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .continue-shopping:hover {
+            color: var(--primary-pink);
+        }
+
+        .secure-checkout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            color: var(--gray-text);
+            font-size: 14px;
+        }
+
+        .secure-checkout i {
+            color: #4CAF50;
+        }
+
+        /* Footer */
+        footer {
+            background: #2D2D2D;
+            color: white;
+            padding: 60px 5% 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-family: var(--heading-font);
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--light-pink);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #CCCCCC;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-pink);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-pink);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #999;
+        }
+
+        @media (max-width: 968px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-item {
+                grid-template-columns: 100px 1fr;
+                gap: 15px;
+            }
+
+            .item-price-section {
+                grid-column: 2;
+                flex-direction: row;
+                align-items: center;
+                margin-top: 10px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+            .order-summary {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        🌸 Free Delivery on Orders Over $50 | Shop Now & Make Someone's Day Special!
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <svg class="logo-icon" viewBox="0 0 100 100">
+                    <path d="M50,20 L60,40 L80,45 L65,60 L68,80 L50,70 L32,80 L35,60 L20,45 L40,40 Z"/>
+                </svg>
+                <div class="logo-text">
+                    <h1>RICH FLORA</h1>
+                    <p>LOVE FOREVER</p>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="occasions.html">Occasions</a></li>
+                <li><a href="custom-bouquets.html">Custom Bouquets</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="search.html"><i class="fas fa-search"></i></a>
+                <a href="login.html"><i class="fas fa-user"></i></a>
+                <a href="favorites.html"><i class="fas fa-heart"></i></a>
+                <a href="cart.html">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">3</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Shopping Cart</h1>
+        <p>Review your items and proceed to checkout</p>
+    </div>
+
+    <!-- Cart Container -->
+    <div class="cart-container" id="cartContainer">
+        <!-- Cart Items -->
+        <div class="cart-items">
+            <h2>Your Items (3)</h2>
+
+            <!-- Cart Item 1 -->
+            <div class="cart-item">
+                <div class="item-image">
+                    <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=200&h=200&fit=crop" alt="Blushing Grace">
+                </div>
+                <div class="item-details">
+                    <div>
+                        <div class="item-name">Blushing Grace</div>
+                        <div class="item-description">Beautiful pink rose bouquet with baby's breath</div>
+                    </div>
+                    <div class="item-controls">
+                        <div class="quantity-control">
+                            <button class="quantity-btn decrease">-</button>
+                            <span class="quantity">1</span>
+                            <button class="quantity-btn increase">+</button>
+                        </div>
+                        <button class="remove-btn"><i class="fas fa-trash"></i> Remove</button>
+                    </div>
+                </div>
+                <div class="item-price-section">
+                    <div class="item-price">$78</div>
+                </div>
+            </div>
+
+            <!-- Cart Item 2 -->
+            <div class="cart-item">
+                <div class="item-image">
+                    <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=200&h=200&fit=crop" alt="Sunset Garden">
+                </div>
+                <div class="item-details">
+                    <div>
+                        <div class="item-name">Sunset Garden</div>
+                        <div class="item-description">Vibrant mixed flowers in warm tones</div>
+                    </div>
+                    <div class="item-controls">
+                        <div class="quantity-control">
+                            <button class="quantity-btn decrease">-</button>
+                            <span class="quantity">2</span>
+                            <button class="quantity-btn increase">+</button>
+                        </div>
+                        <button class="remove-btn"><i class="fas fa-trash"></i> Remove</button>
+                    </div>
+                </div>
+                <div class="item-price-section">
+                    <div class="item-price">$130</div>
+                    <div class="item-original-price">$150</div>
+                </div>
+            </div>
+
+            <!-- Cart Item 3 -->
+            <div class="cart-item">
+                <div class="item-image">
+                    <img src="https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=200&h=200&fit=crop" alt="White Elegance">
+                </div>
+                <div class="item-details">
+                    <div>
+                        <div class="item-name">White Elegance</div>
+                        <div class="item-description">Pure white lilies arrangement</div>
+                    </div>
+                    <div class="item-controls">
+                        <div class="quantity-control">
+                            <button class="quantity-btn decrease">-</button>
+                            <span class="quantity">1</span>
+                            <button class="quantity-btn increase">+</button>
+                        </div>
+                        <button class="remove-btn"><i class="fas fa-trash"></i> Remove</button>
+                    </div>
+                </div>
+                <div class="item-price-section">
+                    <div class="item-price">$85</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+
+            <div class="summary-row">
+                <span>Subtotal (4 items)</span>
+                <span id="subtotal">$293</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Discount</span>
+                <span style="color: #4CAF50;" id="discount">-$20</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Delivery Fee</span>
+                <span id="deliveryFee">FREE</span>
+            </div>
+
+            <div class="promo-code">
+                <label style="font-weight: 600; margin-bottom: 10px; display: block;">Promo Code</label>
+                <div class="promo-input-group">
+                    <input type="text" placeholder="Enter code" id="promoInput">
+                    <button class="apply-btn" id="applyPromo">Apply</button>
+                </div>
+            </div>
+
+            <div class="summary-row">
+                <span>Total</span>
+                <span id="total">$273</span>
+            </div>
+
+            <button class="checkout-btn">
+                <i class="fas fa-lock"></i> Proceed to Checkout
+            </button>
+
+            <a href="shop.html" class="continue-shopping">
+                <i class="fas fa-arrow-left"></i> Continue Shopping
+            </a>
+
+            <div class="secure-checkout">
+                <i class="fas fa-shield-alt"></i>
+                <span>Secure Checkout</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Rich Flora</h3>
+                <p>We specialize in creating unique, creative, and high-quality gifts for all of life's special moments.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="shop.html">Shop All</a>
+                <a href="occasions.html">Occasions</a>
+                <a href="custom-bouquets.html">Custom Bouquets</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <a href="#">Delivery Information</a>
+                <a href="#">Returns & Refunds</a>
+                <a href="#">FAQ</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Colombo, Sri Lanka</p>
+                <p><i class="fas fa-phone"></i> +94 77 123 4567</p>
+                <p><i class="fas fa-envelope"></i> hello@richflora.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Rich Flora - Love Forever. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        const cartItems = document.querySelectorAll('.cart-item');
+        const subtotalEl = document.getElementById('subtotal');
+        const discountEl = document.getElementById('discount');
+        const totalEl = document.getElementById('total');
+        const cartCountEl = document.querySelector('.cart-count');
+
+        // Quantity controls
+        document.querySelectorAll('.quantity-control').forEach(control => {
+            const decreaseBtn = control.querySelector('.decrease');
+            const increaseBtn = control.querySelector('.increase');
+            const quantityEl = control.querySelector('.quantity');
+
+            decreaseBtn.addEventListener('click', () => {
+                let quantity = parseInt(quantityEl.textContent);
+                if (quantity > 1) {
+                    quantityEl.textContent = quantity - 1;
+                    updateCart();
+                }
+            });
+
+            increaseBtn.addEventListener('click', () => {
+                let quantity = parseInt(quantityEl.textContent);
+                quantityEl.textContent = quantity + 1;
+                updateCart();
+            });
+        });
+
+        // Remove item
+        document.querySelectorAll('.remove-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (confirm('Are you sure you want to remove this item?')) {
+                    this.closest('.cart-item').remove();
+                    updateCart();
+                    
+                    // Check if cart is empty
+                    if (document.querySelectorAll('.cart-item').length === 0) {
+                        showEmptyCart();
+                    }
+                }
+            });
+        });
+
+        function updateCart() {
+            let subtotal = 0;
+            let itemCount = 0;
+
+            document.querySelectorAll('.cart-item').forEach(item => {
+                const price = parseFloat(item.querySelector('.item-price').textContent.replace('$', ''));
+                const quantity = parseInt(item.querySelector('.quantity').textContent);
+                subtotal += price;
+                itemCount += quantity;
+            });
+
+            const discount = 20;
+            const total = subtotal - discount;
+
+            subtotalEl.textContent = '$' + subtotal;
+            totalEl.textContent = '$' + total;
+            cartCountEl.textContent = itemCount;
+        }
+
+        function showEmptyCart() {
+            const cartContainer = document.getElementById('cartContainer');
+            cartContainer.innerHTML = `
+                <div style="grid-column: 1 / -1;">
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-bag"></i>
+                        <h3>Your Cart is Empty</h3>
+                        <p>Looks like you haven't added anything to your cart yet.</p>
+                        <a href="shop.html" class="shop-btn">Start Shopping</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Promo code
+        document.getElementById('applyPromo').addEventListener('click', function() {
+            const promoInput = document.getElementById('promoInput');
+            const code = promoInput.value.toUpperCase();
+
+            if (code === 'FLORA10') {
+                alert('🎉 Promo code applied! You saved $10');
+                discountEl.textContent = '-$30';
+                updateCart();
+            } else if (code === '') {
+                alert('Please enter a promo code');
+            } else {
+                alert('Invalid promo code');
+            }
+        });
+
+        // Checkout button
+        document.querySelector('.checkout-btn').addEventListener('click', function() {
+            alert('🌸 Proceeding to secure checkout...\n\nIn a real application, this would redirect to the payment page.');
+        });
+    </script>
+</body>
+</html>

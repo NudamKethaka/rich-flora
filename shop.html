@@ -1,0 +1,2446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Rich Flora | Premium Flowers & Gifts</title>
+    <meta name="description" content="Browse our complete collection of premium flowers, bouquets, plants, and gifts. Free delivery on orders over $50.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #E91E63;
+            --dark-pink: #C2185B;
+            --light-pink: #F8BBD0;
+            --pale-pink: #FFF5F8;
+            --white: #FFFFFF;
+            --dark-text: #2D2D2D;
+            --gray-text: #666666;
+            --light-gray: #F5F5F5;
+            --border-color: #E0E0E0;
+            --heading-font: 'Playfair Display', serif;
+            --body-font: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--body-font);
+            color: var(--dark-text);
+            line-height: 1.6;
+            background: var(--light-gray);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ========== TOP ANNOUNCEMENT BAR ========== */
+        .announcement-bar {
+            background: var(--primary-pink);
+            color: white;
+            padding: 12px 0;
+            text-align: center;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .announcement-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .close-announcement {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .close-announcement:hover {
+            opacity: 1;
+        }
+
+        /* ========== HEADER & NAVIGATION ========== */
+        header {
+            background: white;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            box-shadow: 0 4px 30px rgba(233, 30, 99, 0.15);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 55px;
+            height: 55px;
+            fill: var(--primary-pink);
+            filter: drop-shadow(0 2px 4px rgba(233, 30, 99, 0.3));
+        }
+
+        .logo-text h1 {
+            font-family: var(--heading-font);
+            color: var(--primary-pink);
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo-text p {
+            font-size: 11px;
+            color: var(--gray-text);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 45px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--primary-pink);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-pink);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-icons a {
+            color: var(--dark-text);
+            font-size: 22px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-icons a:hover {
+            color: var(--primary-pink);
+            transform: scale(1.15);
+        }
+
+        .cart-count, .wishlist-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--primary-pink);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(233, 30, 99, 0.4);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--primary-pink);
+        }
+
+        /* ========== PAGE HEADER ========== */
+        .page-header {
+            background: linear-gradient(135deg, var(--pale-pink) 0%, var(--light-pink) 100%);
+            padding: 80px 5% 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '🌸';
+            position: absolute;
+            font-size: 250px;
+            opacity: 0.1;
+            top: -50px;
+            right: -50px;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .page-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-subtitle {
+            color: var(--primary-pink);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .page-header h1 {
+            font-family: var(--heading-font);
+            font-size: 58px;
+            color: var(--dark-text);
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: var(--gray-text);
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--gray-text);
+        }
+
+        .breadcrumb a {
+            color: var(--gray-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-pink);
+        }
+
+        /* ========== SHOP CONTAINER ========== */
+        .shop-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 60px 5%;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 40px;
+        }
+
+        /* ========== SIDEBAR FILTERS ========== */
+        .sidebar {
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+
+        .filter-section {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .filter-header h3 {
+            font-family: var(--heading-font);
+            font-size: 22px;
+            color: var(--dark-text);
+        }
+
+        .clear-filters {
+            color: var(--primary-pink);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .clear-filters:hover {
+            color: var(--dark-pink);
+            text-decoration: underline;
+        }
+
+        .filter-group {
+            margin-bottom: 30px;
+        }
+
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-group h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: var(--dark-text);
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .filter-option:hover {
+            background: var(--pale-pink);
+        }
+
+        .filter-option input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--primary-pink);
+        }
+
+        .filter-option label {
+            cursor: pointer;
+            font-size: 15px;
+            color: var(--gray-text);
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .filter-count {
+            color: var(--gray-text);
+            font-size: 13px;
+            background: var(--light-gray);
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        /* Price Range Slider */
+        .price-range-slider {
+            margin-top: 20px;
+        }
+
+        .price-inputs {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .price-input {
+            flex: 1;
+        }
+
+        .price-input label {
+            display: block;
+            font-size: 12px;
+            color: var(--gray-text);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .price-input input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .price-input input:focus {
+            border-color: var(--primary-pink);
+        }
+
+        .price-range {
+            margin-top: 15px;
+            width: 100%;
+            height: 6px;
+            background: var(--light-pink);
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .price-range-bar {
+            height: 100%;
+            background: var(--primary-pink);
+            border-radius: 3px;
+            width: 70%;
+        }
+
+        /* Color Filters */
+        .color-filters {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .color-option {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .color-option.active {
+            border-color: var(--dark-text);
+            transform: scale(1.1);
+        }
+
+        .color-option.active::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .color-pink { background: linear-gradient(135deg, #FF69B4, #E91E63); }
+        .color-red { background: linear-gradient(135deg, #FF6B6B, #C62828); }
+        .color-white { background: linear-gradient(135deg, #FFFFFF, #F5F5F5); }
+        .color-yellow { background: linear-gradient(135deg, #FFD54F, #FFA000); }
+        .color-purple { background: linear-gradient(135deg, #BA68C8, #7B1FA2); }
+        .color-orange { background: linear-gradient(135deg, #FF9800, #E65100); }
+        .color-blue { background: linear-gradient(135deg, #42A5F5, #1976D2); }
+        .color-mixed { background: linear-gradient(135deg, #FF69B4, #FFD54F, #BA68C8); }
+
+        /* Apply Filters Button */
+        .apply-filters-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+            box-shadow: 0 5px 20px rgba(233, 30, 99, 0.3);
+        }
+
+        .apply-filters-btn:hover {
+            background: var(--dark-pink);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
+        }
+
+        /* ========== PRODUCTS AREA ========== */
+        .products-area {
+            width: 100%;
+        }
+
+        /* Toolbar */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+            padding: 25px 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .toolbar-left {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .results-count {
+            font-size: 15px;
+            color: var(--gray-text);
+        }
+
+        .results-count strong {
+            color: var(--dark-text);
+            font-weight: 700;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 10px;
+            background: var(--light-gray);
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        .view-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--gray-text);
+            font-size: 18px;
+        }
+
+        .view-btn.active,
+        .view-btn:hover {
+            background: white;
+            color: var(--primary-pink);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .toolbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .sort-select {
+            padding: 12px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            background: white;
+            min-width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .sort-select:focus {
+            border-color: var(--primary-pink);
+        }
+
+        /* Active Filters */
+        .active-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .filter-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--pale-pink);
+            color: var(--primary-pink);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .filter-tag i {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .filter-tag i:hover {
+            transform: scale(1.2);
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .products-grid.list-view {
+            grid-template-columns: 1fr;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.25);
+        }
+
+        .product-image {
+            position: relative;
+            overflow: hidden;
+            height: 350px;
+            background: var(--pale-pink);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.12);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-pink);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+            z-index: 2;
+        }
+
+        .product-badge.sale {
+            background: #FF5722;
+        }
+
+        .product-badge.new {
+            background: #4CAF50;
+        }
+
+        .product-badge.limited {
+            background: #9C27B0;
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: white;
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            font-size: 20px;
+            color: var(--gray-text);
+            z-index: 2;
+        }
+
+        .wishlist-btn:hover,
+        .wishlist-btn.active {
+            background: var(--primary-pink);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .quick-actions {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .product-card:hover .quick-actions {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .quick-btn {
+            padding: 12px 20px;
+            background: white;
+            color: var(--primary-pink);
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-size: 14px;
+        }
+
+        .quick-btn:hover {
+            background: var(--primary-pink);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .product-info {
+            padding: 28px;
+        }
+
+        .product-category {
+            color: var(--gray-text);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .product-name {
+            font-family: var(--heading-font);
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: var(--dark-text);
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .product-description {
+            color: var(--gray-text);
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 3px;
+            color: #FFB800;
+            font-size: 16px;
+        }
+
+        .rating-count {
+            color: var(--gray-text);
+            font-size: 14px;
+        }
+
+        .product-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .product-price {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-pink);
+        }
+
+        .product-price-old {
+            font-size: 18px;
+            color: var(--gray-text);
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+
+        .stock-status {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .stock-status.in-stock {
+            color: #4CAF50;
+        }
+
+        .stock-status.low-stock {
+            color: #FF9800;
+        }
+
+        .stock-status.out-stock {
+            color: #F44336;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--pale-pink);
+            color: var(--primary-pink);
+            border: 2px solid var(--primary-pink);
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .add-to-cart-btn:hover {
+            background: var(--primary-pink);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.3);
+        }
+
+        .add-to-cart-btn:disabled {
+            background: var(--light-gray);
+            color: var(--gray-text);
+            border-color: var(--border-color);
+            cursor: not-allowed;
+        }
+
+        /* List View Styles */
+        .products-grid.list-view .product-card {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+        }
+
+        .products-grid.list-view .product-image {
+            height: 100%;
+            min-height: 280px;
+        }
+
+        .products-grid.list-view .product-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .products-grid.list-view .product-description {
+            -webkit-line-clamp: 3;
+        }
+
+        .products-grid.list-view .quick-actions {
+            position: static;
+            opacity: 1;
+            transform: none;
+            margin-top: 15px;
+        }
+
+        /* ========== PAGINATION ========== */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 60px;
+        }
+
+        .page-btn {
+            min-width: 45px;
+            height: 45px;
+            padding: 0 15px;
+            border: 2px solid var(--border-color);
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--dark-text);
+        }
+
+        .page-btn.active,
+        .page-btn:hover {
+            background: var(--primary-pink);
+            color: white;
+            border-color: var(--primary-pink);
+            transform: translateY(-2px);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ========== NEWSLETTER ========== */
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--dark-pink) 100%);
+            padding: 80px 5%;
+            color: white;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-section::before {
+            content: '🌸';
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.1;
+            top: -50px;
+            right: -50px;
+            animation: rotate 20s linear infinite;
+        }
+
+        .newsletter-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-icon {
+            font-size: 60px;
+            margin-bottom: 25px;
+        }
+
+        .newsletter-content h2 {
+            font-family: var(--heading-font);
+            font-size: 46px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .newsletter-content p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 18px 30px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50px;
+            font-size: 16px;
+            outline: none;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .newsletter-form input:focus {
+            background: rgba(255,255,255,0.25);
+            border-color: white;
+        }
+
+        .newsletter-form button {
+            padding: 18px 45px;
+            background: white;
+            color: var(--primary-pink);
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .newsletter-form button:hover {
+            background: var(--pale-pink);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: #2D2D2D;
+            color: white;
+            padding: 80px 5% 30px;
+        }
+
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+
+        .footer-about h3 {
+            font-family: var(--heading-font);
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--light-pink);
+        }
+
+        .footer-about p {
+            color: #CCCCCC;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-pink);
+            transform: translateY(-5px);
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-section a {
+            color: #CCCCCC;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-pink);
+            transform: translateX(5px);
+        }
+
+        .footer-contact p {
+            color: #CCCCCC;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-contact i {
+            color: var(--light-pink);
+            width: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #999;
+        }
+
+        .payment-methods {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .payment-methods i {
+            font-size: 32px;
+            color: #999;
+        }
+
+        /* ========== SCROLL TO TOP ========== */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 5px 20px rgba(233, 30, 99, 0.5);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-pink);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.6);
+        }
+
+        .scroll-top.show {
+            display: flex;
+        }
+
+        /* ========== LOADING OVERLAY ========== */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loading-overlay.show {
+            display: flex;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 5px solid var(--pale-pink);
+            border-top: 5px solid var(--primary-pink);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 1400px) {
+            .shop-container {
+                grid-template-columns: 280px 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .shop-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .toolbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .products-grid.list-view .product-card {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid.list-view .product-image {
+                height: 300px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .page-header h1 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .color-filters {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar" id="announcement">
+        <div class="announcement-content">
+            <i class="fas fa-gift"></i>
+            <span><strong>Special Offer:</strong> Get 15% OFF on your first order! Use code: <strong>FLORA15</strong></span>
+        </div>
+        <button class="close-announcement" onclick="closeAnnouncement()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header id="header">
+        <nav>
+            <a href="index.html" class="logo">
+                <svg class="logo-icon" viewBox="0 0 100 100">
+                    <path d="M50,20 L60,40 L80,45 L65,60 L68,80 L50,70 L32,80 L35,60 L20,45 L40,40 Z"/>
+                </svg>
+                <div class="logo-text">
+                    <h1>RICH FLORA</h1>
+                    <p>LOVE FOREVER</p>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="occasions.html">Occasions</a></li>
+                <li><a href="custom-bouquets.html">Custom Bouquets</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="search.html" title="Search"><i class="fas fa-search"></i></a>
+                <a href="login.html" title="Account"><i class="fas fa-user"></i></a>
+                <a href="favorites.html" title="Favorites">
+                    <i class="fas fa-heart"></i>
+                    <span class="wishlist-count" id="wishlistCount">0</span>
+                </a>
+                <a href="cart.html" title="Cart">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-subtitle">Premium Collection</div>
+            <h1>Our Shop</h1>
+            <p>Discover our complete collection of fresh flowers, elegant arrangements, and thoughtful gifts</p>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Shop</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shop Container -->
+    <div class="shop-container">
+        <!-- Sidebar Filters -->
+        <aside class="sidebar">
+            <!-- Main Filter Section -->
+            <div class="filter-section">
+                <div class="filter-header">
+                    <h3>Filters</h3>
+                    <a href="#" class="clear-filters" onclick="clearAllFilters()">Clear All</a>
+                </div>
+
+                <!-- Categories -->
+                <div class="filter-group">
+                    <h4>Categories</h4>
+                    <div class="filter-option">
+                        <input type="checkbox" id="cat-Bright & Cheerful" checked>
+                        <label for="cat-Bright & Cheerful">
+                            <span>Bright & Cheerful</span>
+                            <span class="filter-count">48</span>
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="cat-Fresh & Spring-Inspired">
+                        <label for="cat-Fresh & Spring-Inspired">
+                            <span>Fresh & Spring-Inspired</span>
+                            <span class="filter-count">32</span>
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="cat-Elegant & Luxurious">
+                        <label for="cat-Elegant & Luxurious">
+                            <span>Elegant & Luxurious</span>
+                            <span class="filter-count">24</span>
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="cat-arrangements">
+                        <label for="cat-arrangements">
+                            <span>Arrangements</span>
+                            <span class="filter-count">36</span>
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="cat-gifts">
+                        <label for="cat-gifts">
+                            <span>Gift Sets</span>
+                            <span class="filter-count">28</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Price Range -->
+                <div class="filter-group">
+                    <h4>Price Range</h4>
+                    <div class="price-inputs">
+                        <div class="price-input">
+                            <label>Min Price</label>
+                            <input type="number" id="minPrice" value="20" min="0">
+                        </div>
+                        <div class="price-input">
+                            <label>Max Price</label>
+                            <input type="number" id="maxPrice" value="200" max="500">
+                        </div>
+                    </div>
+                    <div class="price-range">
+                        <div class="price-range-bar"></div>
+                    </div>
+                </div>
+
+                <!-- Color -->
+                <div class="filter-group">
+                    <h4>Color</h4>
+                    <div class="color-filters">
+                        <div class="color-option color-pink" onclick="toggleColor(this)" title="Pink"></div>
+                        <div class="color-option color-red" onclick="toggleColor(this)" title="Red"></div>
+                        <div class="color-option color-white" onclick="toggleColor(this)" title="White"></div>
+                        <div class="color-option color-yellow" onclick="toggleColor(this)" title="Yellow"></div>
+                        <div class="color-option color-purple" onclick="toggleColor(this)" title="Purple"></div>
+                        <div class="color-option color-orange" onclick="toggleColor(this)" title="Orange"></div>
+                        <div class="color-option color-blue" onclick="toggleColor(this)" title="Blue"></div>
+                        <div class="color-option color-mixed" onclick="toggleColor(this)" title="Mixed"></div>
+                    </div>
+                </div>
+
+                <!-- Occasions -->
+                <div class="filter-group">
+                    <h4>Occasion</h4>
+                    <div class="filter-option">
+                        <input type="checkbox" id="occ-birthday">
+                        <label for="occ-birthday">
+                            <span>Birthday</span>
+                            <span class="filter-count">42</span>
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="occ-anniversary">
+                        <label for="occ-anniversary">
+                            <span>Anniversary</span>
+                            <span class="filter-count">38</span>
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="occ-wedding">
+                        <label for="occ-wedding">
+                            <span>Wedding</span>
+                            <span class="filter-count">25</span>
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="occ-sympathy">
+                        <label for="occ-sympathy">
+                            <span>Sympathy</span>
+                            <span class="filter-count">18</span>
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="occ-getwell">
+                        <label for="occ-getwell">
+                            <span>Get Well</span>
+                            <span class="filter-count">22</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Rating -->
+                <div class="filter-group">
+                    <h4>Rating</h4>
+                    <div class="filter-option">
+                        <input type="checkbox" id="rating-5">
+                        <label for="rating-5">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span class="filter-count">64</span>
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="rating-4">
+                        <label for="rating-4">
+                            <span>⭐⭐⭐⭐ & Up</span>
+                            <span class="filter-count">82</span>
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="rating-3">
+                        <label for="rating-3">
+                            <span>⭐⭐⭐ & Up</span>
+                            <span class="filter-count">98</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="apply-filters-btn" onclick="applyFilters()">
+                    <i class="fas fa-filter"></i> Apply Filters
+                </button>
+            </div>
+        </aside>
+
+        <!-- Products Area -->
+        <div class="products-area">
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <div class="toolbar-left">
+                    <div class="results-count">
+                        Showing <strong id="resultStart">1</strong>-<strong id="resultEnd">12</strong> of <strong id="resultTotal">148</strong> products
+                    </div>
+                    <div class="view-toggle">
+                        <button class="view-btn active" onclick="setView('grid')" title="Grid View">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" onclick="setView('list')" title="List View">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="toolbar-right">
+                    <select class="sort-select" id="sortSelect" onchange="sortProducts()">
+                        <option value="featured">Sort by: Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name-az">Name: A-Z</option>
+                        <option value="name-za">Name: Z-A</option>
+                        <option value="newest">Newest First</option>
+                        <option value="bestselling">Best Selling</option>
+                        <option value="rating">Top Rated</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Active Filters -->
+            <div class="active-filters" id="activeFilters">
+                <!-- Dynamic filter tags will appear here -->
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Product 1 -->
+                <div class="product-card" data-category="bouquets" data-price="78" data-rating="5">
+                    <div class="product-image">
+                        <img src="Images/9.webp" alt="Blushing Grace">
+                        <span class="product-badge">sunshine melody</span>
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Bright & Cheerful</div>
+                        <h3 class="product-name">Sunshine Melody</h3>
+                        <p class="product-description">BA bright, joyful bunch of sunflowers, yellow daisies, and vibrant greenery.</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(124 reviews)</span>
+                        </div>
+                        <div class="product-price-row">
+                            <div>
+                                <span class="product-price">LKR 3,000</span>
+                            </div>
+                            <span class="stock-status in-stock">
+                                <i class="fas fa-check-circle"></i> In Stock
+                            </span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this, 'Blushing Grace', 78)">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card" data-category="mixed" data-price="65" data-rating="4">
+                    <div class="product-image">
+                        <img src="Images/10.webp" alt="Sunset Garden">
+                        <span class="product-badge sale">-20% OFF</span>
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Bright & Cheerful</div>
+                        <h3 class="product-name">Tuscan Sunset</h3>
+                        <p class="product-description">Warm hues featuring orange lilies, peach roses, and yellow snapdragons.</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-count">(98 reviews)</span>
+                        </div>
+                        <div class="product-price-row">
+                            <div>
+                                <span class="product-price-old">LKR 4,000</span><br>
+                                <span class="product-price">LKR 3,600</span>
+                            </div>
+                            <span class="stock-status in-stock">
+                                <i class="fas fa-check-circle"></i> In Stock
+                            </span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this, 'Sunset Garden', 65)">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card" data-category="arrangements" data-price="85" data-rating="5">
+                    <div class="product-image">
+                        <img src="Images/11.webp" alt="White Elegance">
+                        <span class="product-badge">Premium</span>
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Bright & Cheerful</div>
+                        <h3 class="product-name">Summer Carnival</h3>
+                        <p class="product-description">A highly vibrant, multi-colored bouquet featuring bright pinks, yellows, oranges, and purples.</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(156 reviews)</span>
+                        </div>
+                        <div class="product-price-row">
+                            <div>
+                                <span class="product-price">LKR 2,500</span>
+                            </div>
+                            <span class="stock-status in-stock">
+                                <i class="fas fa-check-circle"></i> In Stock
+                            </span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this, 'White Elegance', 85)">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card" data-category="roses" data-price="72" data-rating="4">
+                    <div class="product-image">
+                        <img src="Images/12.webp" alt="Rosy Romance">
+                        <span class="product-badge new">New</span>
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Bright & Cheerful</div>
+                        <h3 class="product-name">Golden Hour</h3>
+                        <p class="product-description">An aesthetic mix of warm amber, mustard, and peach-toned florals.</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-count">(87 reviews)</span>
+                        </div>
+                        <div class="product-price-row">
+                            <div>
+                                <span class="product-price">LKR 2,000</span>
+                            </div>
+                            <span class="stock-status low-stock">
+                                <i class="fas fa-exclamation-circle"></i> Low Stock
+                            </span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this, 'Rosy Romance', 72)">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card" data-category="bouquets" data-price="58" data-rating="5">
+                    <div class="product-image">
+                        <img src="Images/13.webp" alt="Spring Delight">
+                        <span class="product-badge sale">Sale</span>
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Fresh & Spring-Inspired</div>
+                        <h3 class="product-name">SSpring’s Awakening </h3>
+                        <p class="product-description">A fresh, crisp mix of pastel tulips, daffodils, and sweet peas.</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(203 reviews)</span>
+                        </div>
+                        <div class="product-price-row">
+                            <div>
+                                <span class="product-price-old">LKR 2,900</span><br>
+                                <span class="product-price">LKR 2,300</span>
+                            </div>
+                            <span class="stock-status in-stock">
+                                <i class="fas fa-check-circle"></i> In Stock
+                            </span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this, 'Spring Delight', 58)">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card" data-category="arrangements" data-price="68" data-rating="4">
+                    <div class="product-image">
+                        <img src="Images/14.webp" alt="Lavender Dreams">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Fresh & Spring-Inspired</div>
+                        <h3 class="product-name">Morning Dewdrop</h3>
+                        <p class="product-description">A clean, airy bouquet of white lilies, green hydrangeas, and eucalyptus.</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-count">(145 reviews)</span>
+                        </div>
+                        <div class="product-price-row">
+                            <div>
+                                <span class="product-price">LKR 2,000</span>
+                            </div>
+                            <span class="stock-status in-stock">
+                                <i class="fas fa-check-circle"></i> In Stock
+                            </span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this, 'Lavender Dreams', 68)">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card" data-category="bouquets" data-price="75" data-rating="5">
+                    <div class="product-image">
+                        <img src="Images/15.jpg" alt="Peach Blossom">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Fresh & Spring-Inspired</div>
+                        <h3 class="product-name">Whispering Breeze</h3>
+                        <p class="product-description">A light, delicate arrangement of soft lavender, blue delphinium, and wispy ferns.</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(112 reviews)</span>
+                        </div>
+                        <div class="product-price-row">
+                            <div>
+                                <span class="product-price">LKR 5,000</span>
+                            </div>
+                            <span class="stock-status in-stock">
+                                <i class="fas fa-check-circle"></i> In Stock
+                            </span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this, 'Peach Blossom', 75)">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card" data-category="arrangements" data-price="92" data-rating="5">
+                    <div class="product-image">
+                        <img src="Images/16.webp" alt="Garden Paradise">
+                        <span class="product-badge">Popular</span>
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Fresh & Spring-Inspired</div>
+                        <h3 class="product-name">Meadow Wanderer</h3>
+                        <p class="product-description">A "just-picked" wildflower aesthetic featuring chamomile, daisies, and loosely arranged foliage.</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-count">(89 reviews)</span>
+                        </div>
+                        <div class="product-price-row">
+                            <div>
+                                <span class="product-price">LKR 1,000</span>
+                            </div>
+                            <span class="stock-status in-stock">
+                                <i class="fas fa-check-circle"></i> In Stock
+                            </span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this, 'Garden Paradise', 92)">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 9 -->
+                <div class="product-card" data-category="bouquets" data-price="62" data-rating="5">
+                    <div class="product-image">
+                        <img src="Images/17.webp" alt="Tulip Treasure">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Elegant & Luxurious</div>
+                        <h3 class="product-name">Purest Pearl</h3>
+                        <p class="product-description">An ultra-elegant, all-white arrangement of white orchids, roses, and peonies.</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(178 reviews)</span>
+                        </div>
+                        <div class="product-price-row">
+                            <div>
+                                <span class="product-price">LKR 4,999 </span>
+                            </div>
+                            <span class="stock-status in-stock">
+                                <i class="fas fa-check-circle"></i> In Stock
+                            </span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this, 'Tulip Treasure', 62)">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 10 -->
+                <div class="product-card" data-category="roses" data-price="88" data-rating="4">
+                    <div class="product-image">
+                        <img src="Images/18.webp" alt="Crimson Love">
+                        <span class="product-badge limited">Limited</span>
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Elegant & Luxurious</div>
+                        <h3 class="product-name">Royal Elegance</h3>
+                        <p class="product-description">A sophisticated, tall arrangement featuring purple orchids, blue irises, and silver-dollar eucalyptus.</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-count">(167 reviews)</span>
+                        </div>
+                        <div class="product-price-row">
+                            <div>
+                                <span class="product-price">LKR 6,000</span>
+                            </div>
+                            <span class="stock-status low-stock">
+                                <i class="fas fa-exclamation-circle"></i> Low Stock
+                            </span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this, 'Crimson Love', 88)">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 11 -->
+                <div class="product-card" data-category="bouquets" data-price="70" data-rating="5">
+                    <div class="product-image">
+                        <img src="Images/19.webp" alt="Pastel Wonder">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Elegant & Luxurious</div>
+                        <h3 class="product-name">Moonlit Serenade</h3>
+                        <p class="product-description">A cool-toned bouquet featuring white anemones, dusty miller, and blue thistle.</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(134 reviews)</span>
+                        </div>
+                        <div class="product-price-row">
+                            <div>
+                                <span class="product-price">LKR 8,000</span>
+                            </div>
+                            <span class="stock-status in-stock">
+                                <i class="fas fa-check-circle"></i> In Stock
+                            </span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this, 'Pastel Wonder', 70)">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 12 -->
+                <div class="product-card" data-category="arrangements" data-price="125" data-rating="5">
+                    <div class="product-image">
+                        <img src="Images/20.jpg" alt="Orchid Elegance">
+                        <span class="product-badge">Premium</span>
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="quickView(this)">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Elegant & Luxurious</div>
+                        <h3 class="product-name">Ocean Whisper</h3>
+                        <p class="product-description">A serene arrangement centered around massive blue hydrangeas and white lisianthus.</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(92 reviews)</span>
+                        </div>
+                        <div class="product-price-row">
+                            <div>
+                                <span class="product-price">LKR 3,000</span>
+                            </div>
+                            <span class="stock-status in-stock">
+                                <i class="fas fa-check-circle"></i> In Stock
+                            </span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this, 'Orchid Elegance', 125)">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="page-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+                <button class="page-btn">...</button>
+                <button class="page-btn">12</button>
+                <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-content">
+            <div class="newsletter-icon">✉️</div>
+            <h2>Stay in Bloom</h2>
+            <p>Subscribe to our newsletter for exclusive offers, new arrivals, and floral inspiration</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3>Rich Flora</h3>
+                <p>We specialize in creating unique, creative, and high-quality gifts for all of life's special moments. With passion and dedication, we bring beauty and joy to every occasion.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="shop.html">Shop All</a></li>
+                    <li><a href="occasions.html">Occasions</a></li>
+                    <li><a href="custom-bouquets.html">Custom Bouquets</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="#">Delivery Information</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>My Account</h4>
+                <ul>
+                    <li><a href="login.html">Sign In</a></li>
+                    <li><a href="signup.html">Create Account</a></li>
+                    <li><a href="cart.html">Shopping Cart</a></li>
+                    <li><a href="favorites.html">Wishlist</a></li>
+                    <li><a href="#">Order History</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Flower Street, Colombo 03, Sri Lanka</p>
+                <p><i class="fas fa-phone"></i> +94 77 123 4567</p>
+                <p><i class="fas fa-envelope"></i> hello@richflora.com</p>
+                <p><i class="fas fa-clock"></i> Mon - Sat: 9:00 AM - 7:00 PM</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Rich Flora - Love Forever. All rights reserved.</p>
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-amex"></i>
+                <i class="fab fa-cc-paypal"></i>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Global Variables
+        let cartCount = 0;
+        let wishlistCount = 0;
+
+        // Close Announcement Bar
+        function closeAnnouncement() {
+            document.getElementById('announcement').style.display = 'none';
+        }
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            // Scroll to top button
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        // Scroll to Top Function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            showNotification('Mobile menu feature - would show navigation drawer');
+        }
+
+        // Toggle Wishlist
+        function toggleWishlist(button) {
+            const icon = button.querySelector('i');
+            const wishlistCountEl = document.getElementById('wishlistCount');
+            
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                button.classList.add('active');
+                wishlistCount++;
+                showNotification('Added to wishlist ❤️');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                button.classList.remove('active');
+                wishlistCount--;
+                showNotification('Removed from wishlist');
+            }
+            
+            wishlistCountEl.textContent = wishlistCount;
+        }
+
+        // Add to Cart Function
+        function addToCart(button, productName, price) {
+            const cartCountEl = document.getElementById('cartCount');
+            cartCount++;
+            cartCountEl.textContent = cartCount;
+            
+            // Button feedback
+            const originalHTML = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i> Added!';
+            button.style.background = '#4CAF50';
+            button.style.borderColor = '#4CAF50';
+            button.style.color = 'white';
+            
+            setTimeout(() => {
+                button.innerHTML = originalHTML;
+                button.style.background = '';
+                button.style.borderColor = '';
+                button.style.color = '';
+            }, 2000);
+
+            showNotification(`${productName} added to cart! 🛒`);
+        }
+
+        // Quick View Function
+        function quickView(button) {
+            showNotification('Quick View feature - would show product details modal');
+        }
+
+        // Notification Function
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #2D2D2D;
+                color: white;
+                padding: 15px 30px;
+                border-radius: 50px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideUp 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideDown 0.3s ease';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // View Toggle (Grid/List)
+        function setView(viewType) {
+            const productsGrid = document.getElementById('productsGrid');
+            const viewBtns = document.querySelectorAll('.view-btn');
+            
+            viewBtns.forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            
+            if (viewType === 'list') {
+                productsGrid.classList.add('list-view');
+            } else {
+                productsGrid.classList.remove('list-view');
+            }
+        }
+
+        // Sort Products
+        function sortProducts() {
+            const sortValue = document.getElementById('sortSelect').value;
+            showLoadingOverlay();
+            
+            setTimeout(() => {
+                hideLoadingOverlay();
+                showNotification(`Sorted by: ${sortValue}`);
+            }, 500);
+        }
+
+        // Toggle Color Filter
+        function toggleColor(element) {
+            element.classList.toggle('active');
+        }
+
+        // Clear All Filters
+        function clearAllFilters() {
+            // Clear checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            
+            // Clear color filters
+            document.querySelectorAll('.color-option').forEach(color => color.classList.remove('active'));
+            
+            // Reset price
+            document.getElementById('minPrice').value = 20;
+            document.getElementById('maxPrice').value = 200;
+            
+            // Clear active filters display
+            document.getElementById('activeFilters').innerHTML = '';
+            
+            showNotification('All filters cleared');
+        }
+
+        // Apply Filters
+        function applyFilters() {
+            showLoadingOverlay();
+            
+            setTimeout(() => {
+                hideLoadingOverlay();
+                showNotification('Filters applied successfully!');
+                updateActiveFilters();
+            }, 800);
+        }
+
+        // Update Active Filters Display
+        function updateActiveFilters() {
+            const activeFiltersDiv = document.getElementById('activeFilters');
+            activeFiltersDiv.innerHTML = '';
+            
+            // Example active filters (in real app, this would be dynamic)
+            const filters = ['Bouquets', 'Price: $20-$200', 'Pink'];
+            
+            filters.forEach(filter => {
+                const tag = document.createElement('div');
+                tag.className = 'filter-tag';
+                tag.innerHTML = `${filter} <i class="fas fa-times"></i>`;
+                tag.querySelector('i').addEventListener('click', () => {
+                    tag.remove();
+                    showNotification(`Removed filter: ${filter}`);
+                });
+                activeFiltersDiv.appendChild(tag);
+            });
+        }
+
+        // Show/Hide Loading Overlay
+        function showLoadingOverlay() {
+            document.getElementById('loadingOverlay').classList.add('show');
+        }
+
+        function hideLoadingOverlay() {
+            document.getElementById('loadingOverlay').classList.remove('show');
+        }
+
+        // Newsletter Form
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            showNotification('🌸 Thank you for subscribing!');
+            this.reset();
+        });
+
+        // Pagination
+        document.querySelectorAll('.page-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (this.disabled) return;
+                
+                document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                showLoadingOverlay();
+                
+                setTimeout(() => {
+                    hideLoadingOverlay();
+                    scrollToTop();
+                }, 500);
+            });
+        });
+
+        // Add CSS animations for notifications
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideUp {
+                from {
+                    opacity: 0;
+                    transform: translate(-50%, 20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translate(-50%, 0);
+                }
+            }
+            @keyframes slideDown {
+                from {
+                    opacity: 1;
+                    transform: translate(-50%, 0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translate(-50%, 20px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize active filters on load
+        window.addEventListener('load', function() {
+            updateActiveFilters();
+        });
+    </script>
+</body>
+</html>

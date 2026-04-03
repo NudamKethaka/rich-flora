@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorites - Rich Flora</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #E91E63;
+            --light-pink: #F8BBD0;
+            --pale-pink: #FFF5F8;
+            --white: #FFFFFF;
+            --dark-text: #2D2D2D;
+            --gray-text: #666666;
+            --heading-font: 'Playfair Display', serif;
+            --body-font: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--body-font);
+            color: var(--dark-text);
+            line-height: 1.6;
+            background: #F9F9F9;
+        }
+
+        /* Header Styles */
+        .top-bar {
+            background: var(--primary-pink);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            fill: var(--primary-pink);
+        }
+
+        .logo-text h1 {
+            font-family: var(--heading-font);
+            color: var(--primary-pink);
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 11px;
+            color: var(--gray-text);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-pink);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-icons a {
+            color: var(--dark-text);
+            font-size: 20px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-icons a:hover {
+            color: var(--primary-pink);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--primary-pink);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--pale-pink) 0%, var(--light-pink) 100%);
+            padding: 60px 5% 40px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: var(--heading-font);
+            font-size: 48px;
+            color: var(--dark-text);
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: var(--gray-text);
+            font-size: 16px;
+        }
+
+        /* Favorites Container */
+        .favorites-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 5%;
+        }
+
+        .favorites-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .favorites-header h2 {
+            font-family: var(--heading-font);
+            font-size: 32px;
+            color: var(--dark-text);
+        }
+
+        .clear-all-btn {
+            padding: 12px 30px;
+            background: white;
+            color: var(--primary-pink);
+            border: 2px solid var(--primary-pink);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .clear-all-btn:hover {
+            background: var(--primary-pink);
+            color: white;
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .favorite-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .favorite-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.2);
+        }
+
+        .favorite-image {
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+            background: var(--pale-pink);
+        }
+
+        .favorite-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .favorite-card:hover .favorite-image img {
+            transform: scale(1.1);
+        }
+
+        .remove-favorite {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            color: var(--primary-pink);
+            font-size: 20px;
+        }
+
+        .remove-favorite:hover {
+            background: #E53935;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .favorite-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary-pink);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .favorite-info {
+            padding: 25px;
+        }
+
+        .favorite-name {
+            font-family: var(--heading-font);
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--dark-text);
+        }
+
+        .favorite-rating {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+            color: #FFB800;
+        }
+
+        .favorite-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-pink);
+            margin-bottom: 15px;
+        }
+
+        .favorite-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .add-to-cart-btn {
+            flex: 1;
+            padding: 12px;
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #C2185B;
+        }
+
+        .view-details-btn {
+            padding: 12px 20px;
+            background: white;
+            color: var(--primary-pink);
+            border: 2px solid var(--primary-pink);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-details-btn:hover {
+            background: var(--pale-pink);
+        }
+
+        /* Empty Favorites */
+        .empty-favorites {
+            text-align: center;
+            padding: 100px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .empty-favorites i {
+            font-size: 100px;
+            color: var(--light-pink);
+            margin-bottom: 25px;
+        }
+
+        .empty-favorites h3 {
+            font-family: var(--heading-font);
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--dark-text);
+        }
+
+        .empty-favorites p {
+            color: var(--gray-text);
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--primary-pink);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(233, 30, 99, 0.3);
+        }
+
+        .shop-btn:hover {
+            background: #C2185B;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #2D2D2D;
+            color: white;
+            padding: 60px 5% 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-family: var(--heading-font);
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--light-pink);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #CCCCCC;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-pink);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-pink);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+            .favorites-header {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        🌸 Free Delivery on Orders Over $50 | Shop Now & Make Someone's Day Special!
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <svg class="logo-icon" viewBox="0 0 100 100">
+                    <path d="M50,20 L60,40 L80,45 L65,60 L68,80 L50,70 L32,80 L35,60 L20,45 L40,40 Z"/>
+                </svg>
+                <div class="logo-text">
+                    <h1>RICH FLORA</h1>
+                    <p>LOVE FOREVER</p>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="occasions.html">Occasions</a></li>
+                <li><a href="custom-bouquets.html">Custom Bouquets</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="search.html"><i class="fas fa-search"></i></a>
+                <a href="login.html"><i class="fas fa-user"></i></a>
+                <a href="favorites.html"><i class="fas fa-heart"></i></a>
+                <a href="cart.html">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>My Favorites</h1>
+        <p>Save and revisit your favorite arrangements</p>
+    </div>
+
+    <!-- Favorites Container -->
+    <div class="favorites-container">
+        <div class="favorites-header">
+            <h2>Saved Items (<span id="favoriteCount">5</span>)</h2>
+            <button class="clear-all-btn" id="clearAllBtn">Clear All</button>
+        </div>
+
+        <div class="favorites-grid" id="favoritesGrid">
+            <!-- Favorite Item 1 -->
+            <div class="favorite-card">
+                <div class="favorite-image">
+                    <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=400&h=400&fit=crop" alt="Blushing Grace">
+                    <button class="remove-favorite"><i class="fas fa-heart"></i></button>
+                    <span class="favorite-badge">Bestseller</span>
+                </div>
+                <div class="favorite-info">
+                    <h3 class="favorite-name">Blushing Grace</h3>
+                    <div class="favorite-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="favorite-price">$78</div>
+                    <div class="favorite-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="view-details-btn"><i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favorite Item 2 -->
+            <div class="favorite-card">
+                <div class="favorite-image">
+                    <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&h=400&fit=crop" alt="Sunset Garden">
+                    <button class="remove-favorite"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="favorite-info">
+                    <h3 class="favorite-name">Sunset Garden</h3>
+                    <div class="favorite-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="favorite-price">$65</div>
+                    <div class="favorite-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="view-details-btn"><i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favorite Item 3 -->
+            <div class="favorite-card">
+                <div class="favorite-image">
+                    <img src="https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=400&h=400&fit=crop" alt="White Elegance">
+                    <button class="remove-favorite"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="favorite-info">
+                    <h3 class="favorite-name">White Elegance</h3>
+                    <div class="favorite-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="favorite-price">$85</div>
+                    <div class="favorite-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="view-details-btn"><i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favorite Item 4 -->
+            <div class="favorite-card">
+                <div class="favorite-image">
+                    <img src="https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?w=400&h=400&fit=crop" alt="Rosy Romance">
+                    <button class="remove-favorite"><i class="fas fa-heart"></i></button>
+                    <span class="favorite-badge">New</span>
+                </div>
+                <div class="favorite-info">
+                    <h3 class="favorite-name">Rosy Romance</h3>
+                    <div class="favorite-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="favorite-price">$72</div>
+                    <div class="favorite-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="view-details-btn"><i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favorite Item 5 -->
+            <div class="favorite-card">
+                <div class="favorite-image">
+                    <img src="https://images.unsplash.com/photo-1496062031456-07b8f162a322?w=400&h=400&fit=crop" alt="Spring Delight">
+                    <button class="remove-favorite"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="favorite-info">
+                    <h3 class="favorite-name">Spring Delight</h3>
+                    <div class="favorite-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="favorite-price">$58</div>
+                    <div class="favorite-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="view-details-btn"><i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Rich Flora</h3>
+                <p>We specialize in creating unique, creative, and high-quality gifts for all of life's special moments.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="shop.html">Shop All</a>
+                <a href="occasions.html">Occasions</a>
+                <a href="custom-bouquets.html">Custom Bouquets</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <a href="#">Delivery Information</a>
+                <a href="#">Returns & Refunds</a>
+                <a href="#">FAQ</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Colombo, Sri Lanka</p>
+                <p><i class="fas fa-phone"></i> +94 77 123 4567</p>
+                <p><i class="fas fa-envelope"></i> hello@richflora.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Rich Flora - Love Forever. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const favoriteCount = document.getElementById('favoriteCount');
+        const favoritesGrid = document.getElementById('favoritesGrid');
+        const clearAllBtn = document.getElementById('clearAllBtn');
+        const cartCount = document.querySelector('.cart-count');
+        let count = parseInt(cartCount.textContent);
+
+        // Remove individual favorite
+        document.querySelectorAll('.remove-favorite').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const card = this.closest('.favorite-card');
+                
+                card.style.transform = 'scale(0)';
+                card.style.opacity = '0';
+                
+                setTimeout(() => {
+                    card.remove();
+                    updateFavoriteCount();
+                    checkEmpty();
+                }, 300);
+            });
+        });
+
+        // Add to cart from favorites
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                count++;
+                cartCount.textContent = count;
+                
+                this.textContent = 'Added!';
+                this.style.background = '#4CAF50';
+                
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                    this.style.background = '';
+                }, 1500);
+            });
+        });
+
+        // Clear all favorites
+        clearAllBtn.addEventListener('click', function() {
+            if (confirm('Are you sure you want to remove all favorites?')) {
+                document.querySelectorAll('.favorite-card').forEach(card => {
+                    card.style.transform = 'scale(0)';
+                    card.style.opacity = '0';
+                });
+                
+                setTimeout(() => {
+                    showEmptyFavorites();
+                }, 300);
+            }
+        });
+
+        function updateFavoriteCount() {
+            const remainingCards = document.querySelectorAll('.favorite-card').length;
+            favoriteCount.textContent = remainingCards;
+        }
+
+        function checkEmpty() {
+            if (document.querySelectorAll('.favorite-card').length === 0) {
+                showEmptyFavorites();
+            }
+        }
+
+        function showEmptyFavorites() {
+            favoritesGrid.innerHTML = `
+                <div style="grid-column: 1 / -1;">
+                    <div class="empty-favorites">
+                        <i class="fas fa-heart-broken"></i>
+                        <h3>No Favorites Yet</h3>
+                        <p>Start adding items to your favorites to see them here!</p>
+                        <a href="shop.html" class="shop-btn">Browse Products</a>
+                    </div>
+                </div>
+            `;
+            favoriteCount.textContent = '0';
+            clearAllBtn.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
