@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Occasions - Rich Flora | Flowers for Every Celebration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #E91E63;
+            --light-pink: #F8BBD0;
+            --pale-pink: #FFF5F8;
+            --white: #FFFFFF;
+            --dark-text: #2D2D2D;
+            --gray-text: #666666;
+            --heading-font: 'Playfair Display', serif;
+            --body-font: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--body-font);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .top-bar {
+            background: var(--primary-pink);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            fill: var(--primary-pink);
+        }
+
+        .logo-text h1 {
+            font-family: var(--heading-font);
+            color: var(--primary-pink);
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 11px;
+            color: var(--gray-text);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-pink);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-icons a {
+            color: var(--dark-text);
+            font-size: 20px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-icons a:hover {
+            color: var(--primary-pink);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--primary-pink);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--pale-pink) 0%, var(--light-pink) 100%);
+            padding: 80px 5% 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: var(--heading-font);
+            font-size: 52px;
+            color: var(--dark-text);
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: var(--gray-text);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Occasions Grid */
+        .occasions-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 5%;
+        }
+
+        .occasions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .occasion-card {
+            position: relative;
+            height: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.5s ease;
+        }
+
+        .occasion-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.3);
+        }
+
+        .occasion-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .occasion-card:hover::before {
+            background: linear-gradient(to bottom, transparent 0%, rgba(233, 30, 99, 0.85) 100%);
+        }
+
+        .occasion-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .occasion-card:hover img {
+            transform: scale(1.15);
+        }
+
+        .occasion-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px;
+            z-index: 2;
+            color: white;
+        }
+
+        .occasion-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .occasion-card:hover .occasion-icon {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .occasion-content h2 {
+            font-family: var(--heading-font);
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .occasion-content p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .occasion-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: white;
+            color: var(--primary-pink);
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .occasion-card:hover .occasion-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .occasion-btn:hover {
+            background: var(--primary-pink);
+            color: white;
+        }
+
+        /* Info Section */
+        .info-section {
+            background: var(--pale-pink);
+            padding: 80px 5%;
+            margin-top: 60px;
+        }
+
+        .info-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .info-card {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .info-card i {
+            font-size: 48px;
+            color: var(--primary-pink);
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            font-family: var(--heading-font);
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--dark-text);
+        }
+
+        .info-card p {
+            color: var(--gray-text);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: #2D2D2D;
+            color: white;
+            padding: 60px 5% 30px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-family: var(--heading-font);
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--light-pink);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #CCCCCC;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-pink);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-pink);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+            .occasions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        🌸 Free Delivery on Orders Over $50 | Shop Now & Make Someone's Day Special!
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <svg class="logo-icon" viewBox="0 0 100 100">
+                    <path d="M50,20 L60,40 L80,45 L65,60 L68,80 L50,70 L32,80 L35,60 L20,45 L40,40 Z"/>
+                </svg>
+                <div class="logo-text">
+                    <h1>RICH FLORA</h1>
+                    <p>LOVE FOREVER</p>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="occasions.html" class="active">Occasions</a></li>
+                <li><a href="custom-bouquets.html">Custom Bouquets</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="search.html"><i class="fas fa-search"></i></a>
+                <a href="login.html"><i class="fas fa-user"></i></a>
+                <a href="favorites.html"><i class="fas fa-heart"></i></a>
+                <a href="cart.html">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Shop by Occasion</h1>
+        <p>Find the perfect arrangement for every special moment in life. Our expert florists create stunning bouquets tailored to each celebration.</p>
+    </div>
+
+    <!-- Occasions Grid -->
+    <div class="occasions-container">
+        <div class="occasions-grid">
+            <!-- Birthday -->
+            <div class="occasion-card">
+                <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&h=600&fit=crop" alt="Birthday Flowers">
+                <div class="occasion-content">
+                    <div class="occasion-icon">🎂</div>
+                    <h2>Birthday</h2>
+                    <p>Brighten their special day with vibrant, colorful blooms that celebrate another year of joy and happiness.</p>
+                    <a href="shop.html" class="occasion-btn">Shop Birthday Flowers</a>
+                </div>
+            </div>
+
+            <!-- Wedding -->
+            <div class="occasion-card">
+                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&h=600&fit=crop" alt="Wedding Flowers">
+                <div class="occasion-content">
+                    <div class="occasion-icon">💒</div>
+                    <h2>Wedding</h2>
+                    <p>Create magical moments with our elegant wedding collections, from bridal bouquets to stunning centerpieces.</p>
+                    <a href="shop.html" class="occasion-btn">Shop Wedding Flowers</a>
+                </div>
+            </div>
+
+            <!-- Anniversary -->
+            <div class="occasion-card">
+                <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?w=600&h=600&fit=crop" alt="Anniversary Flowers">
+                <div class="occasion-content">
+                    <div class="occasion-icon">💕</div>
+                    <h2>Anniversary</h2>
+                    <p>Celebrate your love story with romantic arrangements that speak volumes about your enduring commitment.</p>
+                    <a href="shop.html" class="occasion-btn">Shop Anniversary Flowers</a>
+                </div>
+            </div>
+
+            <!-- Valentine's Day -->
+            <div class="occasion-card">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&h=600&fit=crop" alt="Valentine Flowers">
+                <div class="occasion-content">
+                    <div class="occasion-icon">❤️</div>
+                    <h2>Valentine's Day</h2>
+                    <p>Express your deepest feelings with passionate red roses and romantic bouquets perfect for your beloved.</p>
+                    <a href="shop.html" class="occasion-btn">Shop Valentine's Flowers</a>
+                </div>
+            </div>
+
+            <!-- Sympathy -->
+            <div class="occasion-card">
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&h=600&fit=crop" alt="Sympathy Flowers">
+                <div class="occasion-content">
+                    <div class="occasion-icon">🕊️</div>
+                    <h2>Sympathy</h2>
+                    <p>Offer comfort and support with elegant, peaceful arrangements that convey your heartfelt condolences.</p>
+                    <a href="shop.html" class="occasion-btn">Shop Sympathy Flowers</a>
+                </div>
+            </div>
+
+            <!-- Get Well -->
+            <div class="occasion-card">
+                <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=600&h=600&fit=crop" alt="Get Well Flowers">
+                <div class="occasion-content">
+                    <div class="occasion-icon">🌞</div>
+                    <h2>Get Well Soon</h2>
+                    <p>Send warm wishes and positive energy with cheerful blooms that brighten their recovery journey.</p>
+                    <a href="shop.html" class="occasion-btn">Shop Get Well Flowers</a>
+                </div>
+            </div>
+
+            <!-- Congratulations -->
+            <div class="occasion-card">
+                <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=600&h=600&fit=crop" alt="Congratulations Flowers">
+                <div class="occasion-content">
+                    <div class="occasion-icon">🎉</div>
+                    <h2>Congratulations</h2>
+                    <p>Celebrate achievements and milestones with stunning arrangements that honor their success.</p>
+                    <a href="shop.html" class="occasion-btn">Shop Congratulations Flowers</a>
+                </div>
+            </div>
+
+            <!-- Mother's Day -->
+            <div class="occasion-card">
+                <img src="https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=600&h=600&fit=crop" alt="Mother's Day Flowers">
+                <div class="occasion-content">
+                    <div class="occasion-icon">👩</div>
+                    <h2>Mother's Day</h2>
+                    <p>Show mom how much she means to you with beautiful bouquets designed to make her feel special.</p>
+                    <a href="shop.html" class="occasion-btn">Shop Mother's Day Flowers</a>
+                </div>
+            </div>
+
+            <!-- Just Because -->
+            <div class="occasion-card">
+                <img src="https://images.unsplash.com/photo-1496062031456-07b8f162a322?w=600&h=600&fit=crop" alt="Just Because Flowers">
+                <div class="occasion-content">
+                    <div class="occasion-icon">🌸</div>
+                    <h2>Just Because</h2>
+                    <p>Sometimes the best gifts need no reason. Surprise someone special with unexpected beauty.</p>
+                    <a href="shop.html" class="occasion-btn">Shop Just Because Flowers</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Section -->
+    <div class="info-section">
+        <div class="info-content">
+            <div class="info-card">
+                <i class="fas fa-palette"></i>
+                <h3>Custom Designs</h3>
+                <p>Every occasion is unique, and so are our arrangements. We tailor each bouquet to match the sentiment and celebration perfectly.</p>
+            </div>
+
+            <div class="info-card">
+                <i class="fas fa-truck"></i>
+                <h3>Same Day Delivery</h3>
+                <p>Need flowers urgently? Order before 2 PM for same-day delivery. We ensure your flowers arrive fresh and on time.</p>
+            </div>
+
+            <div class="info-card">
+                <i class="fas fa-leaf"></i>
+                <h3>Fresh & Premium</h3>
+                <p>We source only the freshest, highest quality flowers from trusted growers to ensure lasting beauty and fragrance.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Rich Flora</h3>
+                <p>We specialize in creating unique, creative, and high-quality gifts for all of life's special moments.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="shop.html">Shop All</a>
+                <a href="occasions.html">Occasions</a>
+                <a href="custom-bouquets.html">Custom Bouquets</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <a href="#">Delivery Information</a>
+                <a href="#">Returns & Refunds</a>
+                <a href="#">FAQ</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Colombo, Sri Lanka</p>
+                <p><i class="fas fa-phone"></i> +94 77 123 4567</p>
+                <p><i class="fas fa-envelope"></i> hello@richflora.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Rich Flora - Love Forever. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
