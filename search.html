@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search - Rich Flora | Find Your Perfect Flowers</title>
-    <meta name="description" content="Search our complete collection of premium flowers, bouquets, and gifts. Find exactly what you're looking for.">
+    <title>Advanced Search - Rich Flora | Find Your Perfect Flowers</title>
+    <meta name="description" content="Search our complete collection of premium flowers, bouquets, and gifts. Advanced filters and smart search.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -218,7 +218,7 @@
         /* ========== SEARCH HERO ========== */
         .search-hero {
             background: linear-gradient(135deg, var(--pale-pink) 0%, var(--light-pink) 100%);
-            padding: 80px 5% 60px;
+            padding: 60px 5% 40px;
             position: relative;
             overflow: hidden;
         }
@@ -226,10 +226,10 @@
         .search-hero::before {
             content: '🔍';
             position: absolute;
-            font-size: 300px;
-            opacity: 0.1;
-            top: -80px;
-            right: -80px;
+            font-size: 250px;
+            opacity: 0.08;
+            top: -60px;
+            right: -60px;
             animation: rotate 20s linear infinite;
         }
 
@@ -247,72 +247,75 @@
 
         .search-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .search-header h1 {
             font-family: var(--heading-font);
-            font-size: 58px;
+            font-size: 48px;
             color: var(--dark-text);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-weight: 800;
         }
 
         .search-header p {
-            font-size: 18px;
+            font-size: 16px;
             color: var(--gray-text);
         }
 
         /* Advanced Search Box */
         .search-box {
             position: relative;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .search-input-wrapper {
             position: relative;
             box-shadow: 0 10px 40px rgba(0,0,0,0.15);
             border-radius: 25px;
-            overflow: hidden;
+            overflow: visible;
             background: white;
         }
 
         .search-input {
             width: 100%;
-            padding: 25px 180px 25px 70px;
-            border: 4px solid white;
-            font-size: 18px;
+            padding: 20px 180px 20px 60px;
+            border: 3px solid white;
+            font-size: 17px;
             outline: none;
             transition: all 0.3s ease;
             background: white;
+            border-radius: 25px;
         }
 
         .search-input:focus {
             border-color: var(--primary-pink);
+            box-shadow: 0 0 0 4px rgba(233, 30, 99, 0.1);
         }
 
         .search-icon-left {
             position: absolute;
-            left: 25px;
+            left: 22px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 24px;
+            font-size: 22px;
             color: var(--primary-pink);
         }
 
         .search-actions {
             position: absolute;
-            right: 10px;
+            right: 8px;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
 
         .voice-search-btn,
-        .camera-search-btn {
-            width: 45px;
-            height: 45px;
+        .camera-search-btn,
+        .clear-search-btn {
+            width: 40px;
+            height: 40px;
             border: none;
             background: var(--pale-pink);
             color: var(--primary-pink);
@@ -322,24 +325,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .voice-search-btn:hover,
-        .camera-search-btn:hover {
+        .camera-search-btn:hover,
+        .clear-search-btn:hover {
             background: var(--primary-pink);
             color: white;
             transform: scale(1.1);
         }
 
         .search-btn {
-            padding: 12px 35px;
+            padding: 10px 30px;
             background: var(--primary-pink);
             color: white;
             border: none;
             border-radius: 25px;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
@@ -351,167 +355,384 @@
             box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
         }
 
-        /* Search Suggestions Dropdown */
-        .search-suggestions {
+        /* Autocomplete Dropdown */
+        .autocomplete-dropdown {
             position: absolute;
-            top: 100%;
+            top: calc(100% + 10px);
             left: 0;
             right: 0;
             background: white;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            margin-top: 10px;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease;
-            z-index: 10;
+            z-index: 100;
         }
 
-        .search-suggestions.show {
-            max-height: 500px;
+        .autocomplete-dropdown.show {
+            max-height: 400px;
             overflow-y: auto;
         }
 
-        .suggestion-section {
-            padding: 20px 25px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .suggestion-section:last-child {
-            border-bottom: none;
-        }
-
-        .suggestion-title {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--gray-text);
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .suggestion-item {
-            padding: 12px 15px;
+        .autocomplete-item {
+            padding: 15px 25px;
             cursor: pointer;
-            border-radius: 10px;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .suggestion-item:hover {
+        .autocomplete-item:last-child {
+            border-bottom: none;
+        }
+
+        .autocomplete-item:hover {
             background: var(--pale-pink);
         }
 
-        .suggestion-icon {
-            width: 40px;
-            height: 40px;
+        .autocomplete-icon {
+            width: 35px;
+            height: 35px;
             background: var(--pale-pink);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary-pink);
-            font-size: 16px;
+            font-size: 14px;
         }
 
-        .suggestion-text {
-            flex: 1;
-        }
-
-        .suggestion-text strong {
+        .autocomplete-text strong {
             color: var(--dark-text);
-            font-size: 15px;
+            font-size: 14px;
         }
 
-        .suggestion-text small {
+        .autocomplete-text small {
             color: var(--gray-text);
-            font-size: 13px;
+            font-size: 12px;
             display: block;
         }
 
-        /* Popular & Recent Searches */
-        .search-tags {
+        /* Quick Search Tags */
+        .quick-search-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
         }
 
-        .search-tags-title {
-            width: 100%;
-            text-align: center;
-            color: var(--gray-text);
-            font-size: 14px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .search-tag {
-            padding: 10px 20px;
+        .quick-tag {
+            padding: 8px 18px;
             background: white;
             border: 2px solid var(--border-color);
             border-radius: 25px;
             color: var(--dark-text);
-            text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
-            transition: all 0.3s ease;
             cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
-        .search-tag:hover {
+        .quick-tag:hover {
             background: var(--primary-pink);
             color: white;
             border-color: var(--primary-pink);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
         }
 
-        .search-tag i {
-            font-size: 12px;
-        }
-
-        /* ========== SEARCH RESULTS ========== */
-        .search-results-section {
+        /* ========== MAIN SEARCH SECTION ========== */
+        .main-search-section {
             max-width: 1600px;
             margin: 0 auto;
-            padding: 60px 5%;
+            padding: 40px 5%;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            align-items: start;
         }
 
-        .results-header {
+        /* ========== FILTER SIDEBAR ========== */
+        .filter-sidebar {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+
+        .filter-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
-            padding: 30px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .filter-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark-text);
+        }
+
+        .clear-filters-btn {
+            background: none;
+            border: none;
+            color: var(--primary-pink);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .clear-filters-btn:hover {
+            text-decoration: underline;
+        }
+
+        .filter-group {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .filter-group:last-child {
+            border-bottom: none;
+        }
+
+        .filter-group-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .filter-group-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark-text);
+        }
+
+        .filter-toggle {
+            color: var(--gray-text);
+            transition: transform 0.3s ease;
+        }
+
+        .filter-group-header.collapsed .filter-toggle {
+            transform: rotate(-90deg);
+        }
+
+        .filter-options {
+            max-height: 500px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .filter-options.collapsed {
+            max-height: 0;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            cursor: pointer;
+        }
+
+        .filter-option input[type="checkbox"],
+        .filter-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--primary-pink);
+        }
+
+        .filter-option label {
+            flex: 1;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--dark-text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .filter-count {
+            color: var(--gray-text);
+            font-size: 12px;
+        }
+
+        /* Color Filter */
+        .color-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .color-option {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .color-option.selected {
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 2px white, 0 0 0 4px var(--primary-pink);
+        }
+
+        .color-option.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        /* Price Range Slider */
+        .price-range-container {
+            padding: 10px 0;
+        }
+
+        .price-inputs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .price-input {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .price-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 5px;
+            background: var(--light-pink);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .price-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-pink);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(233, 30, 99, 0.4);
+        }
+
+        .price-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-pink);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(233, 30, 99, 0.4);
+        }
+
+        /* Rating Filter */
+        .rating-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .rating-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .rating-option:hover {
+            background: var(--pale-pink);
+            border-color: var(--primary-pink);
+        }
+
+        .rating-option.selected {
+            background: var(--pale-pink);
+            border-color: var(--primary-pink);
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 2px;
+            color: #FFB800;
+        }
+
+        .rating-text {
+            font-size: 13px;
+            color: var(--gray-text);
+        }
+
+        /* ========== RESULTS SECTION ========== */
+        .results-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .results-header {
             background: white;
             border-radius: 20px;
+            padding: 25px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
             gap: 20px;
         }
 
         .results-info h2 {
             font-family: var(--heading-font);
-            font-size: 32px;
+            font-size: 28px;
             color: var(--dark-text);
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
         .results-count {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--gray-text);
         }
 
         .results-count strong {
             color: var(--primary-pink);
-            font-weight: 700;
         }
 
         .results-actions {
@@ -522,22 +743,22 @@
 
         .view-toggle {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             background: var(--light-gray);
-            padding: 5px;
+            padding: 4px;
             border-radius: 10px;
         }
 
         .view-btn {
-            width: 42px;
-            height: 42px;
+            width: 38px;
+            height: 38px;
             border: none;
             background: transparent;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
             color: var(--gray-text);
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .view-btn.active,
@@ -548,7 +769,7 @@
         }
 
         .sort-select {
-            padding: 12px 20px;
+            padding: 10px 18px;
             border: 2px solid var(--border-color);
             border-radius: 12px;
             font-size: 14px;
@@ -556,55 +777,58 @@
             cursor: pointer;
             outline: none;
             background: white;
-            min-width: 200px;
+            min-width: 180px;
         }
 
         .sort-select:focus {
             border-color: var(--primary-pink);
         }
 
-        /* Filter Pills */
+        /* Active Filters Pills */
         .active-filters {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 30px;
+            gap: 10px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
         }
 
         .filter-pill {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 18px;
+            gap: 8px;
+            padding: 8px 16px;
             background: var(--pale-pink);
             color: var(--primary-pink);
-            border-radius: 25px;
-            font-size: 14px;
+            border-radius: 20px;
+            font-size: 13px;
             font-weight: 600;
         }
 
         .filter-pill i {
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.2s ease;
         }
 
         .filter-pill i:hover {
             transform: scale(1.2);
         }
 
-        .clear-all-filters {
-            padding: 10px 18px;
+        .clear-all-btn {
+            padding: 8px 16px;
             background: white;
             color: var(--primary-pink);
             border: 2px solid var(--primary-pink);
-            border-radius: 25px;
-            font-size: 14px;
+            border-radius: 20px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .clear-all-filters:hover {
+        .clear-all-btn:hover {
             background: var(--primary-pink);
             color: white;
         }
@@ -612,9 +836,12 @@
         /* Products Grid */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .products-grid.list-view {
+            grid-template-columns: 1fr;
         }
 
         .product-card {
@@ -627,15 +854,24 @@
         }
 
         .product-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.25);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.2);
         }
 
         .product-image {
             position: relative;
             overflow: hidden;
-            height: 340px;
+            height: 320px;
             background: var(--pale-pink);
+        }
+
+        .products-grid.list-view .product-card {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+        }
+
+        .products-grid.list-view .product-image {
+            height: 100%;
         }
 
         .product-image img {
@@ -646,39 +882,39 @@
         }
 
         .product-card:hover .product-image img {
-            transform: scale(1.12);
+            transform: scale(1.1);
         }
 
         .product-badge {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             background: var(--primary-pink);
             color: white;
-            padding: 8px 18px;
-            border-radius: 25px;
-            font-size: 12px;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+            box-shadow: 0 4px 12px rgba(233, 30, 99, 0.4);
         }
 
         .wishlist-btn {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 15px;
+            left: 15px;
             background: white;
             border: none;
-            width: 48px;
-            height: 48px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-size: 18px;
             color: var(--gray-text);
         }
 
@@ -691,19 +927,20 @@
 
         .quick-view-btn {
             position: absolute;
-            bottom: 20px;
+            bottom: 15px;
             left: 50%;
-            transform: translateX(-50%) translateY(20px);
-            padding: 12px 28px;
+            transform: translateX(-50%) translateY(15px);
+            padding: 10px 24px;
             background: white;
             color: var(--primary-pink);
             border: none;
-            border-radius: 25px;
+            border-radius: 20px;
             font-weight: 700;
+            font-size: 13px;
             cursor: pointer;
             opacity: 0;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .product-card:hover .quick-view-btn {
@@ -717,22 +954,22 @@
         }
 
         .product-info {
-            padding: 28px;
+            padding: 22px;
         }
 
         .product-category {
             color: var(--gray-text);
-            font-size: 13px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
         }
 
         .product-name {
             font-family: var(--heading-font);
-            font-size: 24px;
-            margin-bottom: 12px;
+            font-size: 22px;
+            margin-bottom: 10px;
             color: var(--dark-text);
             font-weight: 700;
         }
@@ -740,51 +977,51 @@
         .product-rating {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 15px;
+            gap: 6px;
+            margin-bottom: 12px;
         }
 
         .stars {
             display: flex;
-            gap: 3px;
+            gap: 2px;
             color: #FFB800;
-            font-size: 16px;
+            font-size: 14px;
         }
 
         .rating-count {
             color: var(--gray-text);
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .product-price {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 800;
             color: var(--primary-pink);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .product-price-old {
-            font-size: 18px;
+            font-size: 16px;
             color: var(--gray-text);
             text-decoration: line-through;
-            margin-left: 10px;
+            margin-left: 8px;
         }
 
         .add-to-cart-btn {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             background: var(--pale-pink);
             color: var(--primary-pink);
             border: 2px solid var(--primary-pink);
             border-radius: 12px;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 14px;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .add-to-cart-btn:hover {
@@ -794,38 +1031,58 @@
             box-shadow: 0 6px 20px rgba(233, 30, 99, 0.3);
         }
 
+        /* Loading State */
+        .loading-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--light-pink);
+            border-top-color: var(--primary-pink);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* No Results */
         .no-results {
             text-align: center;
-            padding: 100px 20px;
+            padding: 80px 20px;
             background: white;
             border-radius: 20px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
         }
 
         .no-results i {
-            font-size: 120px;
+            font-size: 100px;
             color: var(--light-pink);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .no-results h3 {
             font-family: var(--heading-font);
-            font-size: 36px;
-            margin-bottom: 15px;
+            font-size: 32px;
+            margin-bottom: 12px;
             color: var(--dark-text);
         }
 
         .no-results p {
             color: var(--gray-text);
-            font-size: 16px;
-            margin-bottom: 30px;
+            font-size: 15px;
+            margin-bottom: 25px;
             line-height: 1.8;
         }
 
-        .browse-btn {
+        .browse-all-btn {
             display: inline-block;
-            padding: 16px 40px;
+            padding: 14px 35px;
             background: var(--primary-pink);
             color: white;
             text-decoration: none;
@@ -835,96 +1092,18 @@
             box-shadow: 0 5px 20px rgba(233, 30, 99, 0.3);
         }
 
-        .browse-btn:hover {
+        .browse-all-btn:hover {
             background: var(--dark-pink);
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
-        }
-
-        /* ========== CATEGORY QUICK LINKS ========== */
-        .category-links {
-            background: white;
-            padding: 60px 5%;
-            margin-top: 60px;
-        }
-
-        .category-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-subtitle {
-            color: var(--primary-pink);
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
-        }
-
-        .section-header h2 {
-            font-family: var(--heading-font);
-            font-size: 48px;
-            color: var(--dark-text);
-            margin-bottom: 15px;
-        }
-
-        .section-header p {
-            font-size: 16px;
-            color: var(--gray-text);
-        }
-
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .category-card {
-            background: var(--light-gray);
-            padding: 35px 25px;
-            border-radius: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 3px solid transparent;
-        }
-
-        .category-card:hover {
-            background: white;
-            border-color: var(--primary-pink);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.2);
-        }
-
-        .category-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .category-card h3 {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--dark-text);
-            margin-bottom: 10px;
-        }
-
-        .category-card p {
-            font-size: 14px;
-            color: var(--gray-text);
         }
 
         /* ========== FOOTER ========== */
         footer {
             background: #2D2D2D;
             color: white;
-            padding: 80px 5% 30px;
-            margin-top: 80px;
+            padding: 60px 5% 25px;
+            margin-top: 60px;
         }
 
         .footer-content {
@@ -932,31 +1111,32 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
-            gap: 60px;
-            margin-bottom: 50px;
+            gap: 50px;
+            margin-bottom: 40px;
         }
 
         .footer-about h3 {
             font-family: var(--heading-font);
-            font-size: 28px;
-            margin-bottom: 20px;
+            font-size: 26px;
+            margin-bottom: 18px;
             color: var(--light-pink);
         }
 
         .footer-about p {
             color: #CCCCCC;
             line-height: 1.8;
-            margin-bottom: 25px;
+            margin-bottom: 22px;
+            font-size: 14px;
         }
 
         .social-links {
             display: flex;
-            gap: 15px;
+            gap: 12px;
         }
 
         .social-links a {
-            width: 45px;
-            height: 45px;
+            width: 42px;
+            height: 42px;
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
             display: flex;
@@ -964,17 +1144,17 @@
             justify-content: center;
             color: white;
             transition: all 0.3s ease;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .social-links a:hover {
             background: var(--primary-pink);
-            transform: translateY(-5px);
+            transform: translateY(-4px);
         }
 
         .footer-section h4 {
-            font-size: 18px;
-            margin-bottom: 25px;
+            font-size: 17px;
+            margin-bottom: 22px;
             color: white;
             font-weight: 700;
         }
@@ -984,7 +1164,7 @@
         }
 
         .footer-section ul li {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .footer-section a {
@@ -992,6 +1172,7 @@
             text-decoration: none;
             transition: all 0.3s ease;
             display: inline-block;
+            font-size: 14px;
         }
 
         .footer-section a:hover {
@@ -1001,31 +1182,33 @@
 
         .footer-contact p {
             color: #CCCCCC;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 14px;
         }
 
         .footer-contact i {
             color: var(--light-pink);
-            width: 20px;
+            width: 18px;
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 30px;
+            padding-top: 25px;
             border-top: 1px solid rgba(255,255,255,0.1);
             color: #999;
+            font-size: 13px;
         }
 
         /* ========== SCROLL TO TOP ========== */
         .scroll-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 55px;
-            height: 55px;
+            bottom: 25px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
             background: var(--primary-pink);
             color: white;
             border: none;
@@ -1034,7 +1217,7 @@
             display: none;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 20px;
             box-shadow: 0 5px 20px rgba(233, 30, 99, 0.5);
             transition: all 0.3s ease;
             z-index: 999;
@@ -1052,6 +1235,10 @@
 
         /* ========== RESPONSIVE DESIGN ========== */
         @media (max-width: 1200px) {
+            .main-search-section {
+                grid-template-columns: 280px 1fr;
+            }
+
             .footer-content {
                 grid-template-columns: repeat(3, 1fr);
             }
@@ -1066,19 +1253,63 @@
                 display: block;
             }
 
+            .main-search-section {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-sidebar {
+                position: static;
+                max-height: none;
+            }
+
             .search-header h1 {
-                font-size: 42px;
+                font-size: 36px;
             }
 
             .search-input {
-                padding: 20px 60px 20px 60px;
+                padding: 18px 50px 18px 50px;
             }
 
             .search-actions {
                 position: static;
                 transform: none;
-                margin-top: 15px;
+                margin-top: 12px;
                 justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+
+            .products-grid.list-view {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid.list-view .product-card {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .search-header h1 {
+                font-size: 28px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-input {
+                padding: 16px 20px;
+            }
+
+            .search-icon-left {
+                display: none;
             }
 
             .results-header {
@@ -1086,35 +1317,14 @@
                 align-items: flex-start;
             }
 
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            .category-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            .color-options {
+                grid-template-columns: repeat(5, 1fr);
             }
         }
 
-        @media (max-width: 480px) {
-            .search-header h1 {
-                font-size: 32px;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .search-input {
-                padding: 18px 20px;
-            }
-
-            .search-icon-left {
-                display: none;
-            }
+        /* Hide file input */
+        #imageUpload {
+            display: none;
         }
     </style>
 </head>
@@ -1156,11 +1366,11 @@
                 <a href="login.html" title="Account"><i class="fas fa-user"></i></a>
                 <a href="favorites.html" title="Favorites">
                     <i class="fas fa-heart"></i>
-                    <span class="wishlist-count" id="wishlistCount">0</span>
+                    <span class="wishlist-count" id="navWishlistCount">0</span>
                 </a>
                 <a href="cart.html" title="Cart">
                     <i class="fas fa-shopping-bag"></i>
-                    <span class="cart-count" id="cartCount">0</span>
+                    <span class="cart-count" id="navCartCount">0</span>
                 </a>
             </div>
 
@@ -1175,7 +1385,7 @@
         <div class="search-container">
             <div class="search-header">
                 <h1>Find Your Perfect Flowers</h1>
-                <p>Search our complete collection of premium flowers, bouquets, and gifts</p>
+                <p>Search our complete collection with advanced filters</p>
             </div>
 
             <div class="search-box">
@@ -1185,14 +1395,17 @@
                         type="text" 
                         class="search-input" 
                         id="searchInput" 
-                        placeholder="Search for flowers, occasions, colors, or anything..."
+                        placeholder="Search by name, color, occasion, or type..."
                         autocomplete="off"
                     >
                     <div class="search-actions">
+                        <button class="clear-search-btn" id="clearSearchBtn" onclick="clearSearch()" title="Clear" style="display: none;">
+                            <i class="fas fa-times"></i>
+                        </button>
                         <button class="voice-search-btn" onclick="voiceSearch()" title="Voice Search">
                             <i class="fas fa-microphone"></i>
                         </button>
-                        <button class="camera-search-btn" onclick="imageSearch()" title="Image Search">
+                        <button class="camera-search-btn" onclick="triggerImageUpload()" title="Image Search">
                             <i class="fas fa-camera"></i>
                         </button>
                         <button class="search-btn" onclick="performSearch()">
@@ -1201,406 +1414,261 @@
                     </div>
                 </div>
 
-                <!-- Search Suggestions Dropdown -->
-                <div class="search-suggestions" id="searchSuggestions">
-                    <div class="suggestion-section">
-                        <div class="suggestion-title">Recent Searches</div>
-                        <div class="suggestion-item" onclick="selectSuggestion('Pink Roses')">
-                            <div class="suggestion-icon"><i class="fas fa-clock"></i></div>
-                            <div class="suggestion-text">
-                                <strong>Pink Roses</strong>
-                                <small>Yesterday</small>
-                            </div>
-                        </div>
-                        <div class="suggestion-item" onclick="selectSuggestion('Birthday Bouquet')">
-                            <div class="suggestion-icon"><i class="fas fa-clock"></i></div>
-                            <div class="suggestion-text">
-                                <strong>Birthday Bouquet</strong>
-                                <small>2 days ago</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="suggestion-section">
-                        <div class="suggestion-title">Popular Searches</div>
-                        <div class="suggestion-item" onclick="selectSuggestion('Wedding Flowers')">
-                            <div class="suggestion-icon"><i class="fas fa-fire"></i></div>
-                            <div class="suggestion-text">
-                                <strong>Wedding Flowers</strong>
-                                <small>Trending now</small>
-                            </div>
-                        </div>
-                        <div class="suggestion-item" onclick="selectSuggestion('Red Roses')">
-                            <div class="suggestion-icon"><i class="fas fa-fire"></i></div>
-                            <div class="suggestion-text">
-                                <strong>Red Roses</strong>
-                                <small>Most searched</small>
-                            </div>
-                        </div>
-                        <div class="suggestion-item" onclick="selectSuggestion('Gift Sets')">
-                            <div class="suggestion-icon"><i class="fas fa-fire"></i></div>
-                            <div class="suggestion-text">
-                                <strong>Gift Sets</strong>
-                                <small>Popular this week</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="suggestion-section">
-                        <div class="suggestion-title">Suggestions</div>
-                        <div class="suggestion-item" onclick="selectSuggestion('Anniversary Arrangements')">
-                            <div class="suggestion-icon"><i class="fas fa-search"></i></div>
-                            <div class="suggestion-text">
-                                <strong>Anniversary Arrangements</strong>
-                            </div>
-                        </div>
-                        <div class="suggestion-item" onclick="selectSuggestion('Orchid Plants')">
-                            <div class="suggestion-icon"><i class="fas fa-search"></i></div>
-                            <div class="suggestion-text">
-                                <strong>Orchid Plants</strong>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Autocomplete Dropdown -->
+                <div class="autocomplete-dropdown" id="autocompleteDropdown">
+                    <!-- Populated dynamically -->
                 </div>
             </div>
 
-            <div class="search-tags">
-                <div class="search-tags-title">Popular Searches:</div>
-                <div class="search-tag" onclick="quickSearch('Roses')">
+            <div class="quick-search-tags">
+                <div class="quick-tag" onclick="quickSearch('roses')">
                     <i class="fas fa-rose"></i>
                     Roses
                 </div>
-                <div class="search-tag" onclick="quickSearch('Birthday')">
+                <div class="quick-tag" onclick="quickSearch('birthday')">
                     <i class="fas fa-birthday-cake"></i>
                     Birthday
                 </div>
-                <div class="search-tag" onclick="quickSearch('Wedding')">
+                <div class="quick-tag" onclick="quickSearch('wedding')">
                     <i class="fas fa-ring"></i>
                     Wedding
                 </div>
-                <div class="search-tag" onclick="quickSearch('Pink Bouquets')">
+                <div class="quick-tag" onclick="quickSearch('pink')">
                     <i class="fas fa-palette"></i>
-                    Pink Bouquets
+                    Pink
                 </div>
-                <div class="search-tag" onclick="quickSearch('Anniversary')">
+                <div class="quick-tag" onclick="quickSearch('anniversary')">
                     <i class="fas fa-heart"></i>
                     Anniversary
                 </div>
-                <div class="search-tag" onclick="quickSearch('Sympathy')">
-                    <i class="fas fa-dove"></i>
-                    Sympathy
-                </div>
             </div>
         </div>
     </div>
 
-    <!-- Search Results Section -->
-    <div class="search-results-section">
-        <!-- Results Header -->
-        <div class="results-header">
-            <div class="results-info">
-                <h2 id="resultsTitle">Search Results</h2>
-                <div class="results-count">
-                    Found <strong id="resultCount">48</strong> products matching your search
+    <!-- Hidden file input for image search -->
+    <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)">
+
+    <!-- Main Search Section -->
+    <div class="main-search-section">
+        <!-- Filter Sidebar -->
+        <aside class="filter-sidebar">
+            <div class="filter-header">
+                <h3>Filters</h3>
+                <button class="clear-filters-btn" onclick="clearAllFilters()">Clear All</button>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="filter-group">
+                <div class="filter-group-header" onclick="toggleFilterGroup(this)">
+                    <span class="filter-group-title">Category</span>
+                    <i class="fas fa-chevron-down filter-toggle"></i>
+                </div>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="radio" name="category" id="cat-all" value="all" checked onchange="applyFilters()">
+                        <label for="cat-all">
+                            All Products
+                            <span class="filter-count" id="count-all">48</span>
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" name="category" id="cat-bouquets" value="bouquet" onchange="applyFilters()">
+                        <label for="cat-bouquets">
+                            Bouquets
+                            <span class="filter-count">18</span>
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" name="category" id="cat-roses" value="roses" onchange="applyFilters()">
+                        <label for="cat-roses">
+                            Roses
+                            <span class="filter-count">12</span>
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" name="category" id="cat-plants" value="plants" onchange="applyFilters()">
+                        <label for="cat-plants">
+                            Plants
+                            <span class="filter-count">8</span>
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" name="category" id="cat-arrangements" value="arrangement" onchange="applyFilters()">
+                        <label for="cat-arrangements">
+                            Arrangements
+                            <span class="filter-count">10</span>
+                        </label>
+                    </div>
                 </div>
             </div>
 
-            <div class="results-actions">
-                <div class="view-toggle">
-                    <button class="view-btn active" onclick="setView('grid')" title="Grid View">
-                        <i class="fas fa-th"></i>
-                    </button>
-                    <button class="view-btn" onclick="setView('list')" title="List View">
-                        <i class="fas fa-list"></i>
-                    </button>
+            <!-- Price Range Filter -->
+            <div class="filter-group">
+                <div class="filter-group-header" onclick="toggleFilterGroup(this)">
+                    <span class="filter-group-title">Price Range</span>
+                    <i class="fas fa-chevron-down filter-toggle"></i>
                 </div>
-
-                <select class="sort-select" id="sortSelect" onchange="sortResults()">
-                    <option value="relevance">Sort by: Relevance</option>
-                    <option value="price-low">Price: Low to High</option>
-                    <option value="price-high">Price: High to Low</option>
-                    <option value="name-az">Name: A-Z</option>
-                    <option value="newest">Newest First</option>
-                    <option value="popular">Most Popular</option>
-                    <option value="rating">Top Rated</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Active Filters -->
-        <div class="active-filters" id="activeFilters" style="display: none;">
-            <div class="filter-pill">
-                Color: Pink
-                <i class="fas fa-times" onclick="removeFilter(this)"></i>
-            </div>
-            <div class="filter-pill">
-                Price: $50-$100
-                <i class="fas fa-times" onclick="removeFilter(this)"></i>
-            </div>
-            <button class="clear-all-filters" onclick="clearAllFilters()">
-                Clear All
-            </button>
-        </div>
-
-        <!-- Products Grid -->
-        <div class="products-grid" id="productsGrid">
-            <!-- Product 1 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=400&h=400&fit=crop" alt="Blushing Grace">
-                    <span class="product-badge">Bestseller</span>
-                    <button class="wishlist-btn" onclick="toggleWishlist(this)">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <button class="quick-view-btn" onclick="quickView()">
-                        <i class="fas fa-eye"></i> Quick View
-                    </button>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">Bouquet</div>
-                    <h3 class="product-name">Blushing Grace</h3>
-                    <div class="product-rating">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                <div class="filter-options">
+                    <div class="price-range-container">
+                        <div class="price-inputs">
+                            <input type="number" class="price-input" id="minPrice" value="0" min="0" max="500" onchange="applyFilters()">
+                            <input type="number" class="price-input" id="maxPrice" value="200" min="0" max="500" onchange="applyFilters()">
                         </div>
-                        <span class="rating-count">(124)</span>
+                        <input type="range" class="price-slider" id="priceSlider" min="0" max="500" value="200" oninput="updatePriceRange(this.value)">
                     </div>
-                    <div class="product-price">$78</div>
-                    <button class="add-to-cart-btn" onclick="addToCart(this, 'Blushing Grace', 78)">
-                        <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
-                    </button>
                 </div>
             </div>
 
-            <!-- Product 2 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&h=400&fit=crop" alt="Sunset Garden">
-                    <span class="product-badge" style="background: #FF5722;">Sale</span>
-                    <button class="wishlist-btn" onclick="toggleWishlist(this)">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <button class="quick-view-btn" onclick="quickView()">
-                        <i class="fas fa-eye"></i> Quick View
-                    </button>
+            <!-- Color Filter -->
+            <div class="filter-group">
+                <div class="filter-group-header" onclick="toggleFilterGroup(this)">
+                    <span class="filter-group-title">Color</span>
+                    <i class="fas fa-chevron-down filter-toggle"></i>
                 </div>
-                <div class="product-info">
-                    <div class="product-category">Mixed Flowers</div>
-                    <h3 class="product-name">Sunset Garden</h3>
-                    <div class="product-rating">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                <div class="filter-options">
+                    <div class="color-options">
+                        <div class="color-option" style="background: #E91E63;" data-color="pink" onclick="toggleColor(this)"></div>
+                        <div class="color-option" style="background: #F44336;" data-color="red" onclick="toggleColor(this)"></div>
+                        <div class="color-option" style="background: #FFFFFF; border: 2px solid #E0E0E0;" data-color="white" onclick="toggleColor(this)"></div>
+                        <div class="color-option" style="background: #FFEB3B;" data-color="yellow" onclick="toggleColor(this)"></div>
+                        <div class="color-option" style="background: #FF9800;" data-color="orange" onclick="toggleColor(this)"></div>
+                        <div class="color-option" style="background: #9C27B0;" data-color="purple" onclick="toggleColor(this)"></div>
+                        <div class="color-option" style="background: #2196F3;" data-color="blue" onclick="toggleColor(this)"></div>
+                        <div class="color-option" style="background: linear-gradient(135deg, #E91E63, #F44336, #FFEB3B);" data-color="mixed" onclick="toggleColor(this)"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rating Filter -->
+            <div class="filter-group">
+                <div class="filter-group-header" onclick="toggleFilterGroup(this)">
+                    <span class="filter-group-title">Minimum Rating</span>
+                    <i class="fas fa-chevron-down filter-toggle"></i>
+                </div>
+                <div class="filter-options">
+                    <div class="rating-options">
+                        <div class="rating-option" data-rating="5" onclick="selectRating(this)">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">& Up</span>
                         </div>
-                        <span class="rating-count">(98)</span>
-                    </div>
-                    <div class="product-price">
-                        $65
-                        <span class="product-price-old">$82</span>
-                    </div>
-                    <button class="add-to-cart-btn" onclick="addToCart(this, 'Sunset Garden', 65)">
-                        <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
-                    </button>
-                </div>
-            </div>
-
-            <!-- Product 3 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=400&h=400&fit=crop" alt="White Elegance">
-                    <span class="product-badge" style="background: #9C27B0;">Premium</span>
-                    <button class="wishlist-btn" onclick="toggleWishlist(this)">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <button class="quick-view-btn" onclick="quickView()">
-                        <i class="fas fa-eye"></i> Quick View
-                    </button>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">Lilies</div>
-                    <h3 class="product-name">White Elegance</h3>
-                    <div class="product-rating">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                        <div class="rating-option" data-rating="4" onclick="selectRating(this)">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">& Up</span>
                         </div>
-                        <span class="rating-count">(156)</span>
-                    </div>
-                    <div class="product-price">$85</div>
-                    <button class="add-to-cart-btn" onclick="addToCart(this, 'White Elegance', 85)">
-                        <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
-                    </button>
-                </div>
-            </div>
-
-            <!-- Product 4 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?w=400&h=400&fit=crop" alt="Rosy Romance">
-                    <span class="product-badge" style="background: #4CAF50;">New</span>
-                    <button class="wishlist-btn" onclick="toggleWishlist(this)">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <button class="quick-view-btn" onclick="quickView()">
-                        <i class="fas fa-eye"></i> Quick View
-                    </button>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">Roses</div>
-                    <h3 class="product-name">Rosy Romance</h3>
-                    <div class="product-rating">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
+                        <div class="rating-option" data-rating="3" onclick="selectRating(this)">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">& Up</span>
                         </div>
-                        <span class="rating-count">(87)</span>
                     </div>
-                    <div class="product-price">$72</div>
-                    <button class="add-to-cart-btn" onclick="addToCart(this, 'Rosy Romance', 72)">
-                        <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
-                    </button>
                 </div>
             </div>
 
-            <!-- Product 5 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1496062031456-07b8f162a322?w=400&h=400&fit=crop" alt="Spring Delight">
-                    <button class="wishlist-btn" onclick="toggleWishlist(this)">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <button class="quick-view-btn" onclick="quickView()">
-                        <i class="fas fa-eye"></i> Quick View
-                    </button>
+            <!-- Occasion Filter -->
+            <div class="filter-group">
+                <div class="filter-group-header" onclick="toggleFilterGroup(this)">
+                    <span class="filter-group-title">Occasion</span>
+                    <i class="fas fa-chevron-down filter-toggle"></i>
                 </div>
-                <div class="product-info">
-                    <div class="product-category">Bouquet</div>
-                    <h3 class="product-name">Spring Delight</h3>
-                    <div class="product-rating">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span class="rating-count">(203)</span>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="checkbox" id="occ-birthday" value="birthday" onchange="applyFilters()">
+                        <label for="occ-birthday">Birthday</label>
                     </div>
-                    <div class="product-price">$58</div>
-                    <button class="add-to-cart-btn" onclick="addToCart(this, 'Spring Delight', 58)">
-                        <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
-                    </button>
-                </div>
-            </div>
-
-            <!-- Product 6 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1455659817273-f96807779a8a?w=400&h=400&fit=crop" alt="Lavender Dreams">
-                    <button class="wishlist-btn" onclick="toggleWishlist(this)">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <button class="quick-view-btn" onclick="quickView()">
-                        <i class="fas fa-eye"></i> Quick View
-                    </button>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">Arrangement</div>
-                    <h3 class="product-name">Lavender Dreams</h3>
-                    <div class="product-rating">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <span class="rating-count">(145)</span>
+                    <div class="filter-option">
+                        <input type="checkbox" id="occ-wedding" value="wedding" onchange="applyFilters()">
+                        <label for="occ-wedding">Wedding</label>
                     </div>
-                    <div class="product-price">$68</div>
-                    <button class="add-to-cart-btn" onclick="addToCart(this, 'Lavender Dreams', 68)">
-                        <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
-                    </button>
+                    <div class="filter-option">
+                        <input type="checkbox" id="occ-anniversary" value="anniversary" onchange="applyFilters()">
+                        <label for="occ-anniversary">Anniversary</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="occ-sympathy" value="sympathy" onchange="applyFilters()">
+                        <label for="occ-sympathy">Sympathy</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="occ-graduation" value="graduation" onchange="applyFilters()">
+                        <label for="occ-graduation">Graduation</label>
+                    </div>
                 </div>
             </div>
-        </div>
+        </aside>
 
-        <!-- No Results (Hidden by default) -->
-        <div class="no-results" id="noResults" style="display: none;">
-            <i class="fas fa-search"></i>
-            <h3>No Results Found</h3>
-            <p>We couldn't find any products matching your search.<br>Try different keywords or browse our categories.</p>
-            <a href="shop.html" class="browse-btn">
-                <i class="fas fa-shopping-bag"></i>
-                Browse All Products
-            </a>
-        </div>
-    </div>
+        <!-- Results Section -->
+        <div class="results-section">
+            <!-- Results Header -->
+            <div class="results-header">
+                <div class="results-info">
+                    <h2 id="resultsTitle">All Products</h2>
+                    <div class="results-count">
+                        Showing <strong id="resultCount">48</strong> of <strong id="totalCount">48</strong> products
+                    </div>
+                </div>
 
-    <!-- Category Quick Links -->
-    <div class="category-links">
-        <div class="category-container">
-            <div class="section-header">
-                <div class="section-subtitle">Browse by Category</div>
-                <h2>Popular Categories</h2>
-                <p>Explore our most popular flower categories</p>
+                <div class="results-actions">
+                    <div class="view-toggle">
+                        <button class="view-btn active" onclick="setView('grid')" title="Grid View">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" onclick="setView('list')" title="List View">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+
+                    <select class="sort-select" id="sortSelect" onchange="sortProducts()">
+                        <option value="relevance">Sort: Relevance</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name-az">Name: A-Z</option>
+                        <option value="rating">Top Rated</option>
+                        <option value="popular">Most Popular</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="category-grid">
-                <div class="category-card" onclick="quickSearch('Bouquets')">
-                    <div class="category-icon">💐</div>
-                    <h3>Bouquets</h3>
-                    <p>48 products</p>
-                </div>
+            <!-- Active Filters -->
+            <div class="active-filters" id="activeFilters" style="display: none;">
+                <!-- Populated dynamically -->
+            </div>
 
-                <div class="category-card" onclick="quickSearch('Roses')">
-                    <div class="category-icon">🌹</div>
-                    <h3>Roses</h3>
-                    <p>32 products</p>
-                </div>
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be populated by JavaScript -->
+            </div>
 
-                <div class="category-card" onclick="quickSearch('Plants')">
-                    <div class="category-icon">🪴</div>
-                    <h3>Plants</h3>
-                    <p>24 products</p>
-                </div>
+            <!-- Loading State -->
+            <div class="loading-state" id="loadingState" style="display: none;">
+                <div class="loading-spinner"></div>
+                <p>Loading products...</p>
+            </div>
 
-                <div class="category-card" onclick="quickSearch('Arrangements')">
-                    <div class="category-icon">🌺</div>
-                    <h3>Arrangements</h3>
-                    <p>36 products</p>
-                </div>
-
-                <div class="category-card" onclick="quickSearch('Gift Sets')">
-                    <div class="category-icon">🎁</div>
-                    <h3>Gift Sets</h3>
-                    <p>28 products</p>
-                </div>
-
-                <div class="category-card" onclick="quickSearch('Orchids')">
-                    <div class="category-icon">🌸</div>
-                    <h3>Orchids</h3>
-                    <p>18 products</p>
-                </div>
+            <!-- No Results -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No Products Found</h3>
+                <p>We couldn't find any products matching your criteria.<br>Try adjusting your filters or search terms.</p>
+                <a href="shop.html" class="browse-all-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    Browse All Products
+                </a>
             </div>
         </div>
     </div>
@@ -1613,8 +1681,7 @@
                 <p>We specialize in creating unique, creative, and high-quality gifts for all of life's special moments. With passion and dedication, we bring beauty and joy to every occasion.</p>
                 <div class="social-links">
                     <a href="https://www.facebook.com/share/1TkkjEoi3o/" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.tiktok.com/@rich_flora1421?_r=1&_t=ZS-95EzGESZLUI" title="Instagram"><i class="fab fa-tiktok"></i></a>
-                    
+                    <a href="https://www.tiktok.com/@rich_flora1421?_r=1&_t=ZS-95EzGESZLUI" title="TikTok"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
 
@@ -1672,157 +1739,761 @@
 
     <!-- JavaScript -->
     <script>
-        // Global Variables
+        // ========== PRODUCT DATABASE ==========
+        const productsDatabase = [
+            {
+                id: 1,
+                name: "Blushing Grace",
+                category: "bouquet",
+                price: 78,
+                oldPrice: null,
+                rating: 5,
+                reviews: 124,
+                image: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=400&h=400&fit=crop",
+                badge: "Bestseller",
+                badgeColor: "#E91E63",
+                colors: ["pink", "white"],
+                occasions: ["birthday", "anniversary"],
+                description: "Elegant pink and white bouquet",
+                tags: ["roses", "pink", "romantic", "elegant"]
+            },
+            {
+                id: 2,
+                name: "Sunset Garden",
+                category: "mixed flowers",
+                price: 65,
+                oldPrice: 82,
+                rating: 4.5,
+                reviews: 98,
+                image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&h=400&fit=crop",
+                badge: "Sale",
+                badgeColor: "#FF5722",
+                colors: ["orange", "yellow", "mixed"],
+                occasions: ["birthday", "celebration"],
+                description: "Vibrant sunset-colored arrangement",
+                tags: ["mixed", "colorful", "bright", "cheerful"]
+            },
+            {
+                id: 3,
+                name: "White Elegance",
+                category: "lilies",
+                price: 85,
+                oldPrice: null,
+                rating: 5,
+                reviews: 156,
+                image: "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=400&h=400&fit=crop",
+                badge: "Premium",
+                badgeColor: "#9C27B0",
+                colors: ["white"],
+                occasions: ["wedding", "sympathy"],
+                description: "Pure white lily arrangement",
+                tags: ["lilies", "white", "elegant", "pure"]
+            },
+            {
+                id: 4,
+                name: "Rosy Romance",
+                category: "roses",
+                price: 72,
+                oldPrice: null,
+                rating: 4,
+                reviews: 87,
+                image: "https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?w=400&h=400&fit=crop",
+                badge: "New",
+                badgeColor: "#4CAF50",
+                colors: ["pink", "red"],
+                occasions: ["anniversary", "romantic"],
+                description: "Classic rose bouquet",
+                tags: ["roses", "romantic", "classic", "love"]
+            },
+            {
+                id: 5,
+                name: "Spring Delight",
+                category: "bouquet",
+                price: 58,
+                oldPrice: null,
+                rating: 5,
+                reviews: 203,
+                image: "https://images.unsplash.com/photo-1496062031456-07b8f162a322?w=400&h=400&fit=crop",
+                badge: null,
+                badgeColor: null,
+                colors: ["pink", "purple", "mixed"],
+                occasions: ["birthday", "celebration"],
+                description: "Fresh spring flower mix",
+                tags: ["spring", "fresh", "colorful", "cheerful"]
+            },
+            {
+                id: 6,
+                name: "Lavender Dreams",
+                category: "arrangement",
+                price: 68,
+                oldPrice: null,
+                rating: 4.5,
+                reviews: 145,
+                image: "https://images.unsplash.com/photo-1455659817273-f96807779a8a?w=400&h=400&fit=crop",
+                badge: null,
+                badgeColor: null,
+                colors: ["purple"],
+                occasions: ["gift", "relaxation"],
+                description: "Calming lavender arrangement",
+                tags: ["lavender", "purple", "calming", "aromatic"]
+            },
+            {
+                id: 7,
+                name: "Red Passion",
+                category: "roses",
+                price: 95,
+                oldPrice: null,
+                rating: 5,
+                reviews: 278,
+                image: "https://images.unsplash.com/photo-1582794543462-6746b62e2b86?w=400&h=400&fit=crop",
+                badge: "Bestseller",
+                badgeColor: "#E91E63",
+                colors: ["red"],
+                occasions: ["anniversary", "romantic"],
+                description: "Passionate red roses",
+                tags: ["roses", "red", "passion", "love"]
+            },
+            {
+                id: 8,
+                name: "Yellow Sunshine",
+                category: "bouquet",
+                price: 62,
+                oldPrice: 75,
+                rating: 4,
+                reviews: 92,
+                image: "https://images.unsplash.com/photo-1463320726281-696a485928c7?w=400&h=400&fit=crop",
+                badge: "Sale",
+                badgeColor: "#FF5722",
+                colors: ["yellow"],
+                occasions: ["birthday", "get well"],
+                description: "Bright yellow bouquet",
+                tags: ["yellow", "bright", "cheerful", "happy"]
+            },
+            {
+                id: 9,
+                name: "Orchid Paradise",
+                category: "plants",
+                price: 125,
+                oldPrice: null,
+                rating: 5,
+                reviews: 167,
+                image: "https://images.unsplash.com/photo-1551884170-09fb70a3a2ed?w=400&h=400&fit=crop",
+                badge: "Premium",
+                badgeColor: "#9C27B0",
+                colors: ["purple", "white"],
+                occasions: ["gift", "home decor"],
+                description: "Exotic orchid plant",
+                tags: ["orchid", "plant", "exotic", "elegant"]
+            },
+            {
+                id: 10,
+                name: "Peony Perfection",
+                category: "bouquet",
+                price: 88,
+                oldPrice: null,
+                rating: 5,
+                reviews: 198,
+                image: "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=400&h=400&fit=crop",
+                badge: null,
+                badgeColor: null,
+                colors: ["pink", "white"],
+                occasions: ["wedding", "anniversary"],
+                description: "Luxurious peony bouquet",
+                tags: ["peony", "luxury", "elegant", "romantic"]
+            },
+            {
+                id: 11,
+                name: "Tropical Paradise",
+                category: "arrangement",
+                price: 105,
+                oldPrice: null,
+                rating: 4.5,
+                reviews: 134,
+                image: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=400&h=400&fit=crop",
+                badge: "New",
+                badgeColor: "#4CAF50",
+                colors: ["orange", "red", "mixed"],
+                occasions: ["celebration", "gift"],
+                description: "Exotic tropical arrangement",
+                tags: ["tropical", "exotic", "vibrant", "unique"]
+            },
+            {
+                id: 12,
+                name: "Garden Fresh",
+                category: "bouquet",
+                price: 55,
+                oldPrice: null,
+                rating: 4,
+                reviews: 76,
+                image: "https://images.unsplash.com/photo-1487070183336-b863922373d4?w=400&h=400&fit=crop",
+                badge: null,
+                badgeColor: null,
+                colors: ["mixed"],
+                occasions: ["birthday", "thank you"],
+                description: "Fresh garden flower mix",
+                tags: ["garden", "fresh", "natural", "wildflower"]
+            }
+        ];
+
+        // Global State
+        let currentView = 'grid';
+        let filteredProducts = [...productsDatabase];
+        let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
         let cartCount = 0;
         let wishlistCount = 0;
+        let selectedColors = [];
+        let selectedRating = 0;
 
-        // Close Announcement Bar
-        function closeAnnouncement() {
-            document.getElementById('announcement').style.display = 'none';
-        }
-
-        // Header Scroll Effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-
-            const scrollTopBtn = document.getElementById('scrollTopBtn');
-            if (window.scrollY > 500) {
-                scrollTopBtn.classList.add('show');
-            } else {
-                scrollTopBtn.classList.remove('show');
-            }
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProducts(productsDatabase);
+            updateResultCount();
+            initializeSearch();
         });
 
-        // Scroll to Top
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        // ========== SEARCH FUNCTIONALITY ==========
+        const searchInput = document.getElementById('searchInput');
+        const autocompleteDropdown = document.getElementById('autocompleteDropdown');
+        const clearSearchBtn = document.getElementById('clearSearchBtn');
+
+        let searchTimeout;
+
+        function initializeSearch() {
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim();
+                
+                if (query.length > 0) {
+                    clearSearchBtn.style.display = 'flex';
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(() => {
+                        showAutocomplete(query);
+                        performSearch();
+                    }, 300);
+                } else {
+                    clearSearchBtn.style.display = 'none';
+                    autocompleteDropdown.classList.remove('show');
+                    filteredProducts = [...productsDatabase];
+                    applyFilters();
+                }
+            });
+
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                    autocompleteDropdown.classList.remove('show');
+                }
+            });
+
+            // Close autocomplete when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !autocompleteDropdown.contains(e.target)) {
+                    autocompleteDropdown.classList.remove('show');
+                }
             });
         }
 
-        // Mobile Menu Toggle
-        function toggleMobileMenu() {
-            showNotification('Mobile menu feature - would show navigation drawer');
-        }
-
-        // Search Input Focus
-        const searchInput = document.getElementById('searchInput');
-        const searchSuggestions = document.getElementById('searchSuggestions');
-
-        searchInput.addEventListener('focus', function() {
-            searchSuggestions.classList.add('show');
-        });
-
-        searchInput.addEventListener('blur', function() {
-            setTimeout(() => {
-                searchSuggestions.classList.remove('show');
-            }, 200);
-        });
-
-        // Search Input
-        searchInput.addEventListener('input', function() {
-            if (this.value.length > 0) {
-                searchSuggestions.classList.add('show');
+        function showAutocomplete(query) {
+            const suggestions = getSearchSuggestions(query);
+            
+            if (suggestions.length > 0) {
+                let html = '';
+                
+                suggestions.forEach(item => {
+                    html += `
+                        <div class="autocomplete-item" onclick="selectAutocomplete('${item.name}')">
+                            <div class="autocomplete-icon">
+                                <i class="fas ${item.icon}"></i>
+                            </div>
+                            <div class="autocomplete-text">
+                                <strong>${highlightMatch(item.name, query)}</strong>
+                                <small>${item.category}</small>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                autocompleteDropdown.innerHTML = html;
+                autocompleteDropdown.classList.add('show');
             } else {
-                searchSuggestions.classList.remove('show');
+                autocompleteDropdown.classList.remove('show');
             }
-        });
-
-        // Select Suggestion
-        function selectSuggestion(text) {
-            searchInput.value = text;
-            searchSuggestions.classList.remove('show');
-            performSearch();
         }
 
-        // Quick Search
+        function getSearchSuggestions(query) {
+            const lowerQuery = query.toLowerCase();
+            const suggestions = [];
+            
+            productsDatabase.forEach(product => {
+                const matchScore = calculateMatchScore(product, lowerQuery);
+                if (matchScore > 0) {
+                    suggestions.push({
+                        name: product.name,
+                        category: product.category,
+                        icon: getCategoryIcon(product.category),
+                        score: matchScore
+                    });
+                }
+            });
+            
+            return suggestions.sort((a, b) => b.score - a.score).slice(0, 5);
+        }
+
+        function calculateMatchScore(product, query) {
+            let score = 0;
+            const lowerName = product.name.toLowerCase();
+            const lowerCategory = product.category.toLowerCase();
+            const lowerDescription = product.description.toLowerCase();
+            
+            // Exact match in name
+            if (lowerName === query) score += 100;
+            // Starts with query
+            else if (lowerName.startsWith(query)) score += 50;
+            // Contains query
+            else if (lowerName.includes(query)) score += 25;
+            
+            // Category match
+            if (lowerCategory.includes(query)) score += 15;
+            
+            // Description match
+            if (lowerDescription.includes(query)) score += 10;
+            
+            // Tags match
+            product.tags.forEach(tag => {
+                if (tag.toLowerCase().includes(query)) score += 5;
+            });
+            
+            // Color match
+            product.colors.forEach(color => {
+                if (color.toLowerCase().includes(query)) score += 10;
+            });
+            
+            // Occasion match
+            product.occasions.forEach(occasion => {
+                if (occasion.toLowerCase().includes(query)) score += 10;
+            });
+            
+            return score;
+        }
+
+        function highlightMatch(text, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return text.replace(regex, '<span style="color: var(--primary-pink); font-weight: 700;">$1</span>');
+        }
+
+        function selectAutocomplete(name) {
+            searchInput.value = name;
+            autocompleteDropdown.classList.remove('show');
+            performSearch();
+            addToSearchHistory(name);
+        }
+
+        function performSearch() {
+            const query = searchInput.value.trim().toLowerCase();
+            
+            if (query) {
+                filteredProducts = productsDatabase.filter(product => {
+                    const matchScore = calculateMatchScore(product, query);
+                    return matchScore > 0;
+                });
+                
+                // Sort by relevance
+                filteredProducts.sort((a, b) => {
+                    return calculateMatchScore(b, query) - calculateMatchScore(a, query);
+                });
+                
+                document.getElementById('resultsTitle').textContent = `Results for "${searchInput.value}"`;
+                addToSearchHistory(searchInput.value);
+            } else {
+                filteredProducts = [...productsDatabase];
+                document.getElementById('resultsTitle').textContent = 'All Products';
+            }
+            
+            applyFilters();
+        }
+
         function quickSearch(query) {
             searchInput.value = query;
             performSearch();
-            document.querySelector('.search-results-section').scrollIntoView({ behavior: 'smooth' });
+            document.querySelector('.main-search-section').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Perform Search
-        function performSearch() {
-            const query = searchInput.value.trim();
-            
-            if (query) {
-                document.getElementById('resultsTitle').textContent = `Results for "${query}"`;
-                showNotification(`🔍 Searching for "${query}"...`);
-                
-                // Scroll to results
-                setTimeout(() => {
-                    document.querySelector('.search-results-section').scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }, 300);
-            } else {
-                showNotification('Please enter a search query');
+        function clearSearch() {
+            searchInput.value = '';
+            clearSearchBtn.style.display = 'none';
+            autocompleteDropdown.classList.remove('show');
+            filteredProducts = [...productsDatabase];
+            document.getElementById('resultsTitle').textContent = 'All Products';
+            applyFilters();
+        }
+
+        // Search History
+        function addToSearchHistory(query) {
+            if (!searchHistory.includes(query)) {
+                searchHistory.unshift(query);
+                searchHistory = searchHistory.slice(0, 5); // Keep last 5 searches
+                localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
             }
         }
 
         // Voice Search
         function voiceSearch() {
-            showNotification('🎤 Voice search activated! Speak now...');
-            
-            if ('webkitSpeechRecognition' in window) {
-                const recognition = new webkitSpeechRecognition();
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                const recognition = new SpeechRecognition();
+                
                 recognition.lang = 'en-US';
-                recognition.start();
+                recognition.interimResults = false;
+                
+                recognition.onstart = function() {
+                    showNotification('🎤 Listening... Speak now!');
+                    document.querySelector('.voice-search-btn').style.background = 'var(--primary-pink)';
+                    document.querySelector('.voice-search-btn').style.color = 'white';
+                };
                 
                 recognition.onresult = function(event) {
                     const transcript = event.results[0][0].transcript;
                     searchInput.value = transcript;
                     performSearch();
+                    showNotification(`Searching for: ${transcript}`);
                 };
                 
                 recognition.onerror = function() {
-                    showNotification('Voice search not available');
+                    showNotification('Voice search failed. Please try again.');
                 };
+                
+                recognition.onend = function() {
+                    document.querySelector('.voice-search-btn').style.background = '';
+                    document.querySelector('.voice-search-btn').style.color = '';
+                };
+                
+                recognition.start();
             } else {
                 showNotification('Voice search not supported in this browser');
             }
         }
 
         // Image Search
-        function imageSearch() {
-            showNotification('📷 Image search feature coming soon!');
+        function triggerImageUpload() {
+            document.getElementById('imageUpload').click();
         }
 
-        // Enter Key Search
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                performSearch();
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                showNotification('📷 Image uploaded! Analyzing... (Demo feature)');
+                // In a real app, this would send the image to an AI service
+                setTimeout(() => {
+                    searchInput.value = 'pink roses';
+                    performSearch();
+                    showNotification('Found similar products!');
+                }, 1500);
             }
-        });
-
-        // View Toggle
-        function setView(viewType) {
-            const viewBtns = document.querySelectorAll('.view-btn');
-            viewBtns.forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            
-            showNotification(`View changed to ${viewType}`);
         }
 
-        // Sort Results
-        function sortResults() {
+        // ========== FILTER FUNCTIONALITY ==========
+        function toggleFilterGroup(header) {
+            header.classList.toggle('collapsed');
+            const options = header.nextElementSibling;
+            options.classList.toggle('collapsed');
+        }
+
+        function applyFilters() {
+            let results = [...filteredProducts];
+            
+            // Category filter
+            const selectedCategory = document.querySelector('input[name="category"]:checked').value;
+            if (selectedCategory !== 'all') {
+                results = results.filter(p => p.category.toLowerCase() === selectedCategory);
+            }
+            
+            // Price filter
+            const minPrice = parseInt(document.getElementById('minPrice').value) || 0;
+            const maxPrice = parseInt(document.getElementById('maxPrice').value) || 500;
+            results = results.filter(p => p.price >= minPrice && p.price <= maxPrice);
+            
+            // Color filter
+            if (selectedColors.length > 0) {
+                results = results.filter(p => 
+                    p.colors.some(c => selectedColors.includes(c))
+                );
+            }
+            
+            // Rating filter
+            if (selectedRating > 0) {
+                results = results.filter(p => p.rating >= selectedRating);
+            }
+            
+            // Occasion filter
+            const selectedOccasions = Array.from(document.querySelectorAll('#occ-birthday, #occ-wedding, #occ-anniversary, #occ-sympathy, #occ-graduation'))
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
+            
+            if (selectedOccasions.length > 0) {
+                results = results.filter(p => 
+                    p.occasions.some(o => selectedOccasions.includes(o))
+                );
+            }
+            
+            displayProducts(results);
+            updateResultCount();
+            updateActiveFilters();
+        }
+
+        function toggleColor(element) {
+            const color = element.dataset.color;
+            
+            if (element.classList.contains('selected')) {
+                element.classList.remove('selected');
+                selectedColors = selectedColors.filter(c => c !== color);
+            } else {
+                element.classList.add('selected');
+                selectedColors.push(color);
+            }
+            
+            applyFilters();
+        }
+
+        function selectRating(element) {
+            document.querySelectorAll('.rating-option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedRating = parseInt(element.dataset.rating);
+            applyFilters();
+        }
+
+        function updatePriceRange(value) {
+            document.getElementById('maxPrice').value = value;
+            applyFilters();
+        }
+
+        function clearAllFilters() {
+            // Reset category
+            document.getElementById('cat-all').checked = true;
+            
+            // Reset price
+            document.getElementById('minPrice').value = 0;
+            document.getElementById('maxPrice').value = 200;
+            document.getElementById('priceSlider').value = 200;
+            
+            // Reset colors
+            selectedColors = [];
+            document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+            
+            // Reset rating
+            selectedRating = 0;
+            document.querySelectorAll('.rating-option').forEach(opt => opt.classList.remove('selected'));
+            
+            // Reset occasions
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            
+            applyFilters();
+            showNotification('All filters cleared');
+        }
+
+        function updateActiveFilters() {
+            const activeFiltersDiv = document.getElementById('activeFilters');
+            let filtersHTML = '';
+            let hasFilters = false;
+            
+            // Category filter
+            const selectedCategory = document.querySelector('input[name="category"]:checked').value;
+            if (selectedCategory !== 'all') {
+                hasFilters = true;
+                filtersHTML += `
+                    <div class="filter-pill">
+                        Category: ${selectedCategory}
+                        <i class="fas fa-times" onclick="document.getElementById('cat-all').checked = true; applyFilters();"></i>
+                    </div>
+                `;
+            }
+            
+            // Price filter
+            const minPrice = parseInt(document.getElementById('minPrice').value);
+            const maxPrice = parseInt(document.getElementById('maxPrice').value);
+            if (minPrice > 0 || maxPrice < 200) {
+                hasFilters = true;
+                filtersHTML += `
+                    <div class="filter-pill">
+                        Price: $${minPrice} - $${maxPrice}
+                        <i class="fas fa-times" onclick="document.getElementById('minPrice').value=0; document.getElementById('maxPrice').value=200; applyFilters();"></i>
+                    </div>
+                `;
+            }
+            
+            // Color filters
+            if (selectedColors.length > 0) {
+                hasFilters = true;
+                filtersHTML += `
+                    <div class="filter-pill">
+                        Colors: ${selectedColors.join(', ')}
+                        <i class="fas fa-times" onclick="selectedColors=[]; document.querySelectorAll('.color-option').forEach(o=>o.classList.remove('selected')); applyFilters();"></i>
+                    </div>
+                `;
+            }
+            
+            // Rating filter
+            if (selectedRating > 0) {
+                hasFilters = true;
+                filtersHTML += `
+                    <div class="filter-pill">
+                        ${selectedRating}+ Stars
+                        <i class="fas fa-times" onclick="selectedRating=0; document.querySelectorAll('.rating-option').forEach(o=>o.classList.remove('selected')); applyFilters();"></i>
+                    </div>
+                `;
+            }
+            
+            if (hasFilters) {
+                filtersHTML += `<button class="clear-all-btn" onclick="clearAllFilters()">Clear All</button>`;
+                activeFiltersDiv.innerHTML = filtersHTML;
+                activeFiltersDiv.style.display = 'flex';
+            } else {
+                activeFiltersDiv.style.display = 'none';
+            }
+        }
+
+        // ========== DISPLAY FUNCTIONS ==========
+        function displayProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            const noResults = document.getElementById('noResults');
+            
+            if (products.length === 0) {
+                grid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            grid.style.display = 'grid';
+            noResults.style.display = 'none';
+            
+            grid.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                        ${product.badge ? `<span class="product-badge" style="background: ${product.badgeColor}">${product.badge}</span>` : ''}
+                        <button class="wishlist-btn" onclick="toggleWishlist(this, ${product.id})">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="quick-view-btn" onclick="quickView(${product.id})">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${product.category}</div>
+                        <h3 class="product-name">${product.name}</h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                ${generateStars(product.rating)}
+                            </div>
+                            <span class="rating-count">(${product.reviews})</span>
+                        </div>
+                        <div class="product-price">
+                            $${product.price}
+                            ${product.oldPrice ? `<span class="product-price-old">$${product.oldPrice}</span>` : ''}
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(this, '${product.name}', ${product.price})">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function generateStars(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+
+        function updateResultCount() {
+            const displayedCount = document.querySelectorAll('.product-card').length;
+            document.getElementById('resultCount').textContent = displayedCount;
+            document.getElementById('totalCount').textContent = productsDatabase.length;
+            document.getElementById('count-all').textContent = productsDatabase.length;
+        }
+
+        function getCategoryIcon(category) {
+            const icons = {
+                'bouquet': 'fa-spa',
+                'roses': 'fa-rose',
+                'lilies': 'fa-leaf',
+                'plants': 'fa-seedling',
+                'arrangement': 'fa-gifts',
+                'mixed flowers': 'fa-flower'
+            };
+            return icons[category.toLowerCase()] || 'fa-leaf';
+        }
+
+        // ========== SORTING ==========
+        function sortProducts() {
             const sortValue = document.getElementById('sortSelect').value;
+            const grid = document.getElementById('productsGrid');
+            const products = Array.from(grid.children);
+            
+            const productsData = products.map(card => {
+                const name = card.querySelector('.product-name').textContent;
+                const price = parseFloat(card.querySelector('.product-price').textContent.replace('$', ''));
+                const ratingText = card.querySelector('.rating-count').textContent;
+                const reviews = parseInt(ratingText.replace(/[()]/g, ''));
+                
+                return { element: card, name, price, reviews };
+            });
+            
+            switch(sortValue) {
+                case 'price-low':
+                    productsData.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    productsData.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name-az':
+                    productsData.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'rating':
+                case 'popular':
+                    productsData.sort((a, b) => b.reviews - a.reviews);
+                    break;
+            }
+            
+            grid.innerHTML = '';
+            productsData.forEach(item => grid.appendChild(item.element));
+            
             showNotification(`Sorted by: ${sortValue}`);
         }
 
-        // Toggle Wishlist
-        let wishlistCount = 0;
-        function toggleWishlist(button) {
+        // ========== VIEW TOGGLE ==========
+        function setView(view) {
+            currentView = view;
+            const grid = document.getElementById('productsGrid');
+            const viewBtns = document.querySelectorAll('.view-btn');
+            
+            viewBtns.forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            
+            if (view === 'list') {
+                grid.classList.add('list-view');
+            } else {
+                grid.classList.remove('list-view');
+            }
+        }
+
+        // ========== CART & WISHLIST ==========
+        function toggleWishlist(button, productId) {
             const icon = button.querySelector('i');
-            const wishlistCountEl = document.getElementById('wishlistCount');
             
             if (icon.classList.contains('far')) {
                 icon.classList.remove('far');
@@ -1838,14 +2509,12 @@
                 showNotification('Removed from wishlist');
             }
             
-            wishlistCountEl.textContent = wishlistCount;
+            document.getElementById('navWishlistCount').textContent = wishlistCount;
         }
 
-        // Add to Cart
         function addToCart(button, productName, price) {
-            const cartCountEl = document.getElementById('cartCount');
             cartCount++;
-            cartCountEl.textContent = cartCount;
+            document.getElementById('navCartCount').textContent = cartCount;
             
             const originalHTML = button.innerHTML;
             button.innerHTML = '<i class="fas fa-check"></i> Added!';
@@ -1863,31 +2532,41 @@
             showNotification(`${productName} added to cart! 🛒`);
         }
 
-        // Quick View
-        function quickView() {
-            showNotification('Quick View feature - would show product details modal');
+        function quickView(productId) {
+            const product = productsDatabase.find(p => p.id === productId);
+            showNotification(`Quick View: ${product.name} (Demo)`);
         }
 
-        // Remove Filter
-        function removeFilter(element) {
-            element.parentElement.remove();
+        // ========== UTILITIES ==========
+        function closeAnnouncement() {
+            document.getElementById('announcement').style.display = 'none';
+        }
+
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
             
-            const filtersDiv = document.getElementById('activeFilters');
-            if (filtersDiv.children.length <= 1) {
-                filtersDiv.style.display = 'none';
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
-            
-            showNotification('Filter removed');
+
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Clear All Filters
-        function clearAllFilters() {
-            document.getElementById('activeFilters').style.display = 'none';
-            document.getElementById('activeFilters').innerHTML = '';
-            showNotification('All filters cleared');
+        function toggleMobileMenu() {
+            showNotification('Mobile menu feature - would show navigation drawer');
         }
 
-        // Notification Function
         function showNotification(message) {
             const notification = document.createElement('div');
             notification.style.cssText = `
@@ -1904,15 +2583,14 @@
                 animation: slideUp 0.3s ease;
                 max-width: 90%;
                 text-align: center;
+                font-size: 14px;
             `;
             notification.textContent = message;
             document.body.appendChild(notification);
 
             setTimeout(() => {
                 notification.style.animation = 'slideDown 0.3s ease';
-                setTimeout(() => {
-                    notification.remove();
-                }, 300);
+                setTimeout(() => notification.remove(), 300);
             }, 3000);
         }
 
@@ -1920,32 +2598,15 @@
         const style = document.createElement('style');
         style.textContent = `
             @keyframes slideUp {
-                from {
-                    opacity: 0;
-                    transform: translate(-50%, 20px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translate(-50%, 0);
-                }
+                from { opacity: 0; transform: translate(-50%, 20px); }
+                to { opacity: 1; transform: translate(-50%, 0); }
             }
             @keyframes slideDown {
-                from {
-                    opacity: 1;
-                    transform: translate(-50%, 0);
-                }
-                to {
-                    opacity: 0;
-                    transform: translate(-50%, 20px);
-                }
+                from { opacity: 1; transform: translate(-50%, 0); }
+                to { opacity: 0; transform: translate(-50%, 20px); }
             }
         `;
         document.head.appendChild(style);
-
-        // Auto-focus search on page load
-        window.addEventListener('load', function() {
-            searchInput.focus();
-        });
     </script>
 </body>
 </html>
