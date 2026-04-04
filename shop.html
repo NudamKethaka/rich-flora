@@ -1424,11 +1424,11 @@
                     <div class="price-inputs">
                         <div class="price-input">
                             <label>Min Price</label>
-                            <input type="number" id="minPrice" value="20" min="0">
+                            <input type="number" id="minPrice" value="2000" min="0">
                         </div>
                         <div class="price-input">
                             <label>Max Price</label>
-                            <input type="number" id="maxPrice" value="200" max="500">
+                            <input type="number" id="maxPrice" value="20000" max="1000">
                         </div>
                     </div>
                     <div class="price-range">
@@ -2361,7 +2361,7 @@
             activeFiltersDiv.innerHTML = '';
             
             // Example active filters (in real app, this would be dynamic)
-            const filters = ['Bouquets', 'Price: $20-$200', 'Pink'];
+            const filters = ['Bouquets', 'Price: LKR2,000-LKR20,000', 'Pink'];
             
             filters.forEach(filter => {
                 const tag = document.createElement('div');
